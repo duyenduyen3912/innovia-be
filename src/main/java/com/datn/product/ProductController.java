@@ -1,9 +1,12 @@
 package com.datn.product;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ArrayList;
+import org.apache.commons.codec.binary.Base64;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,10 +30,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.Base64Utils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.datn.response.DataResponse;
 import com.datn.response.Response;
+
 
 import org.apache.commons.io.IOUtils;
 
@@ -132,6 +146,24 @@ public class ProductController {
         }
 	}
 	 
+	@RequestMapping(value = "/search-by-image", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String searchByImage(@RequestBody String image, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+	
+		byte[] imageBytes = Base64.decodeBase64(image);
+	        String filePath = "C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\image\\decode_image.jpg";
+
+	        try {
+	            File file = new File(filePath);
+	            try (FileOutputStream fos = new FileOutputStream(file)) {
+	                fos.write(imageBytes);
+	            }
+
+	            return "Tệp ảnh đã giải mã và lưu trữ tại: " + filePath;
+	        } catch (IOException e) {
+	            return "Lỗi khi lưu tệp ảnh đã giải mã: " + e.getMessage();
+	        }
+	    }
 	
 	 
 	
