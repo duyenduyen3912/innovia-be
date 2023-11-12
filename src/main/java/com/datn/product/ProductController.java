@@ -93,7 +93,7 @@ public class ProductController {
 	    }
 	    
 	    @GetMapping("/DProduct")
-		 public DataResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
+		public DataResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
 	    	Product product = productDAO.selectProduct(id);
 
 	        if (product != null) {
@@ -148,24 +148,40 @@ public class ProductController {
 	 
 	@RequestMapping(value = "/search-by-image", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String searchByImage(@RequestBody String image, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-	
-		byte[] imageBytes = Base64.decodeBase64(image);
-	        String filePath = "C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\image\\decode_image.jpg";
+	public Object searchByImage(@RequestBody String image, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
+		try {
+			List<Product> allProducts = productDAO.selectAllProductByImage(image);
 
-	        try {
-	            File file = new File(filePath);
-	            try (FileOutputStream fos = new FileOutputStream(file)) {
-	                fos.write(imageBytes);
-	            }
+            // Calculate the total number of products
+            int totalProducts = allProducts.size();
 
-	            return "Tệp ảnh đã giải mã và lưu trữ tại: " + filePath;
-	        } catch (IOException e) {
-	            return "Lỗi khi lưu tệp ảnh đã giải mã: " + e.getMessage();
-	        }
-	    }
-	
-	 
+            // Calculate the total number of pages
+            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
+
+            // Ensure currentPage is within valid range
+            if (currentPage < 1) {
+                currentPage = 1;
+            } else if (currentPage > totalPages) {
+                currentPage = totalPages;
+            }
+
+            // Calculate the start index for the current page
+            int startIndex = (currentPage - 1) * PAGE_SIZE;
+
+            // Calculate the end index for the current page
+            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
+
+            // Return only the products for the current page
+            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
+
+            // Create a response object containing the products and additional information
+            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+     
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+	}
 	
 
 

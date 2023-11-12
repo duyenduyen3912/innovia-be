@@ -1,5 +1,7 @@
 package com.datn.product;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,6 +12,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.CloseableThreadContext.Instance;
+
+import com.datn.searchByImage.Image;
+import com.datn.searchByImage.ImageProcess;
+import com.datn.searchByImage.ImageResult;
+
+import weka.core.Attribute;
+import weka.core.DenseInstance;
+import weka.core.Instances;
+
 
 
 
@@ -22,9 +35,9 @@ public class ProductDAO {
 		private static final String SELECT_ALL_Product = "select * from product";
 		private static final String SELECT_ALL_ProductS_CATEGORY = "select * from product where category=?";
 		private static final String SELECT_Product_BY_ID ="select * from product where id= ?";
-		private static final String SELECT_Product_BY_NAME ="select * from product where name= ?";
 		private static final String SELECT_CATEGORY = "select distinct category from Product";
 		private static final String SEARCH_Product_BY_NAME ="select * from product where name like ?";
+		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
 		private static final String RATE_CMT_SQL = "SELECT distinct name, author,detail,comment.idProduct, image,AVG(rate) as rating\r\n"
 				+ "FROM Product, comment\r\n"
 				+ "where Product.idProduct = comment.idProduct\r\n"
@@ -132,8 +145,59 @@ public class ProductDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+			System.out.println(Products);
 			return Products;
 		}
+		public List<Product> selectAllProductByImage(String search){
+			ImageProcess searchImage = new ImageProcess();
+			ImageResult res = new ImageResult();
+			Image resInstance = new Image();
+			List<String> image_result = new ArrayList();
+			try {
+				String data = searchImage.loadImageFromMemory(search);
+				Instances dataset = searchImage.createInstance(data);
+				Instances extract = searchImage.extractColorHistogram(dataset);
+				resInstance.SearchImage(extract);
+				image_result = res.Result();
+				searchImage.deleteImageFile(data);
+			} catch (IOException e) {
+	            e.printStackTrace();
+	        }
+			
+            
+			List<Product> Products = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
+				for (String imageIndex : image_result) {
+					System.out.println(imageIndex);
+					preparedStatement.setString(1,'%' +imageIndex+ '%');
+					ResultSet resultSet = preparedStatement.executeQuery();
+					while(resultSet.next())
+					{
+						int id = resultSet.getInt("id");
+						String name = resultSet.getString("name");
+						String description = resultSet.getString("description");
+						String category = resultSet.getString("category");
+						String tag = resultSet.getString("tag");
+						String long_description = resultSet.getString("long_description");
+						String weight = resultSet.getString("weight");
+						String size = resultSet.getString("size");
+						String image = resultSet.getString("image");
+						int price = resultSet.getInt("price");
+						Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+						Products.add(b);
+					} 
+					} 
+				
+					}
+					catch(Exception e) {
+						e.printStackTrace();
+					}
+					return Products;
+				}
+				
+			
+		
 		
 	
 }

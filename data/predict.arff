@@ -1,0 +1,7 @@
+@relation predict_image
+
+@attribute image string
+@attribute class {Sofa, BanGhe, Ban, Ghe, Cay, Giuong, Ke}
+
+@data
+"image\\decode_image.jpg", ?
