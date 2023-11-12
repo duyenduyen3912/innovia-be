@@ -107,50 +107,21 @@ public class ProductController {
 		}
 		 
 	 
-	 @GetMapping("/search")
-	 public Object getproductSearch(
-			 @RequestParam(name = "keyword", required = false) String keyword,
-			 @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage
-	) throws IOException{
-		try {
-			List<Product> allProducts = productDAO.selectAllProductByName(keyword);
 
-            // Calculate the total number of products
-            int totalProducts = allProducts.size();
-
-            // Calculate the total number of pages
-            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
-
-            // Ensure currentPage is within valid range
-            if (currentPage < 1) {
-                currentPage = 1;
-            } else if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
-
-            // Calculate the start index for the current page
-            int startIndex = (currentPage - 1) * PAGE_SIZE;
-
-            // Calculate the end index for the current page
-            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
-
-            // Return only the products for the current page
-            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
-
-            // Create a response object containing the products and additional information
-            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-     
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-	}
-	 
-	@RequestMapping(value = "/search-by-image", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/search", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Object searchByImage(@RequestBody String image, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
+	public Object searchByImage(@RequestBody String data, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
+		System.out.println(data);
+		List<Product> allProducts = new ArrayList();
 		try {
-			List<Product> allProducts = productDAO.selectAllProductByImage(image);
+			if(data.length() > 200) {
+				
+				allProducts = productDAO.selectAllProductByImage(data);
+			}
+			else {
+				String keyword = data.substring(1, data.length() - 1);
+				allProducts = productDAO.selectAllProductByName(keyword);
+			}
 
             // Calculate the total number of products
             int totalProducts = allProducts.size();

@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.CloseableThreadContext.Instance;
 
@@ -168,24 +170,29 @@ public class ProductDAO {
 			List<Product> Products = new ArrayList<>();
 			try(Connection connection = getConnection()) {
 				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
+				Set<Integer> addedIds = new HashSet<>();
 				for (String imageIndex : image_result) {
 					System.out.println(imageIndex);
 					preparedStatement.setString(1,'%' +imageIndex+ '%');
 					ResultSet resultSet = preparedStatement.executeQuery();
-					while(resultSet.next())
+					if (resultSet.next())
 					{
 						int id = resultSet.getInt("id");
-						String name = resultSet.getString("name");
-						String description = resultSet.getString("description");
-						String category = resultSet.getString("category");
-						String tag = resultSet.getString("tag");
-						String long_description = resultSet.getString("long_description");
-						String weight = resultSet.getString("weight");
-						String size = resultSet.getString("size");
-						String image = resultSet.getString("image");
-						int price = resultSet.getInt("price");
-						Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
-						Products.add(b);
+						if(!addedIds.contains(id)) {
+							String name = resultSet.getString("name");
+							String description = resultSet.getString("description");
+							String category = resultSet.getString("category");
+							String tag = resultSet.getString("tag");
+							String long_description = resultSet.getString("long_description");
+							String weight = resultSet.getString("weight");
+							String size = resultSet.getString("size");
+							String image = resultSet.getString("image");
+							int price = resultSet.getInt("price");
+							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+							Products.add(b);
+							addedIds.add(id);
+						} 
+						
 					} 
 					} 
 				
