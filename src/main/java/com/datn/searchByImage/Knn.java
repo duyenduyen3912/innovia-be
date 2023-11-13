@@ -10,12 +10,16 @@ import weka.core.Instance;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.converters.ConverterUtils.DataSink;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Knn extends KnowledgeModel {
     private IBk knn;
-    private Evaluation eval;
-
     public Knn(Instances trainingData, String m_opts, String d_opts) throws Exception {
         super(trainingData, m_opts, d_opts);
     }
@@ -29,36 +33,33 @@ public class Knn extends KnowledgeModel {
         knn.buildClassifier(this.trainSet);
     }
 
-    public void evaluateKNN(Instances predictdata) throws Exception {
-        this.testSet = predictdata;
-        this.testSet.setClassIndex(this.testSet.numAttributes() - 1);
+    
+    public Instances findNeighborsInRadius(Instances queryData, double radius, Instances createInstances) throws Exception {
+        queryData.setClassIndex(queryData.numAttributes() - 1);
 
-        Random rd = new Random(1);
-        int folds = 10;
-        eval = new Evaluation(this.trainSet);
-        eval.crossValidateModel(knn, this.testSet, folds, rd);
-//        System.out.println(eval.toSummaryString("\n -----Ket qua tim kiem bang hinh anh-----\n", false));
-    }
-
-    public Instances predictClassLabel(Instances data) throws Exception {
-        Instances unLabel = data;
-        unLabel.setClassIndex(unLabel.numAttributes() - 1);
-
-        // Predict class
-//        double predict = knn.classifyInstance(unLabel.instance(0));
-//        unLabel.instance(0).setClassValue(predict);
-
-        // Find neighbors
+        // Set up NearestNeighbourSearch
         NearestNeighbourSearch search = new LinearNNSearch();
         search.setDistanceFunction(new EuclideanDistance());
-        search.setInstances(this.trainSet);
+        search.setInstances(createInstances);
 
-        Instances neighbors = search.kNearestNeighbours(unLabel.instance(0), 5);
+        int k = createInstances.size();  
+        Instances neighborsInstances = search.kNearestNeighbours(queryData.instance(0), 20);
+        System.out.println(neighborsInstances);
+        Instances neighbors = new Instances(createInstances, 0);
 
-        // Print or use neighbors as needed
-//        System.out.println(unLabel.instance(0).stringValue(unLabel.classIndex()));
-  
-
+        for (int i = 0; i < neighborsInstances.size(); i++) {
+            Instance neighborInstance = neighborsInstances.get(i);
+            double distance = search.getDistances()[i];
+            System.out.println("khoang cach "+ i +distance);
+            if (distance <= radius) {
+            	 System.out.println("ok");
+                neighbors.add(neighborInstance);
+            }
+        }
+        System.out.println("result" + neighbors);
         return neighbors;
     }
+    
+
+    
 }

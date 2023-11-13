@@ -147,7 +147,7 @@ public class ProductDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println(Products);
+		
 			return Products;
 		}
 		public List<Product> selectAllProductByImage(String search){
@@ -159,8 +159,10 @@ public class ProductDAO {
 				String data = searchImage.loadImageFromMemory(search);
 				Instances dataset = searchImage.createInstance(data);
 				Instances extract = searchImage.extractColorHistogram(dataset);
-				resInstance.SearchImage(extract);
-				image_result = res.Result();
+			
+				Instances imageNeighbors = resInstance.SearchImage(extract);
+				image_result = res.Result(imageNeighbors);
+		
 				searchImage.deleteImageFile(data);
 			} catch (IOException e) {
 	            e.printStackTrace();
@@ -172,7 +174,7 @@ public class ProductDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
 				Set<Integer> addedIds = new HashSet<>();
 				for (String imageIndex : image_result) {
-					System.out.println(imageIndex);
+				
 					preparedStatement.setString(1,'%' +imageIndex+ '%');
 					ResultSet resultSet = preparedStatement.executeQuery();
 					if (resultSet.next())

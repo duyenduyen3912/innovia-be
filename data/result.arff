@@ -1,4 +1,4 @@
-@relation 'image-weka.filters.unsupervised.instance.imagefilter.SimpleColorHistogramFilter-DC:\\Users\\ngocl\\eclipse-workspace\\datn-be-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.instance.RemovePercentage-P20.0'
+@relation 'image-weka.filters.unsupervised.instance.imagefilter.SimpleColorHistogramFilter-DC:\\Users\\ngocl\\eclipse-workspace\\datn-be-weka.filters.unsupervised.attribute.Remove-R1'
 
 @attribute 'RGB Color Histogram0' numeric
 @attribute 'RGB Color Histogram1' numeric
@@ -67,8 +67,3 @@
 @attribute class {Sofa,BanGhe,Ban,Ghe,Cay,Giuong,Ke}
 
 @data
-12,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,116,67,0,0,18,72,0,0,17,0,0,0,0,0,0,0,0,0,0,0,0,66,7,0,5,126,21,0,3,1,0,0,0,0,0,0,0,0,0,0,0,11,69,0,0,0,255,84,BanGhe
-2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,92,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,5,0,0,24,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Giuong
-2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,91,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,5,0,0,2,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Giuong
-90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,104,0,0,0,192,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,57,4,0,0,31,127,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,36,147,Giuong
-5,1,0,0,6,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,16,113,7,0,0,2,0,0,0,0,0,0,0,0,0,0,0,86,1,0,0,20,255,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,76,2,0,0,9,169,Ke

@@ -11,23 +11,18 @@ import java.util.List;
 
 public class ImageResult {
 
-    public List<String> Result() {
+    public List<String> Result(Instances instancesB) {
     	
         // refer
         String fileAPath = "C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\extracted.arff";
 
-        // query
-        String fileBPath = "C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\result.arff";
         
         List<String> image_result = new ArrayList<>();
         ImageProcess imageProcess = new ImageProcess();
 
         try {
             Instances instancesA = readArffFile(fileAPath);
-          
-            Instances instancesB = readArffFile(fileBPath);
-            
-            
+
             for (int i = 0; i < instancesB.numInstances(); i++) {
                 Instance instanceB = instancesB.instance(i);
                 

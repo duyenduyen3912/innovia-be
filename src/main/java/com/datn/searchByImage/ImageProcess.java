@@ -98,22 +98,13 @@ public class ImageProcess {
     }
     
     public Instances extractColorHistogram (Instances dataset)  {
+    
     	 try {
 	        SimpleColorHistogramFilter filter = new SimpleColorHistogramFilter();
 	        filter.setInputFormat(dataset);
 	        Instances filteredData = Filter.useFilter(data, filter);
-
-	        int attributeIndexToRemove = filteredData.attribute("image").index() + 1; // Add 1 because Weka indices start from 1
-
-	        // Create the Remove filter
-	        Remove removeFilter = new Remove();
-	        removeFilter.setAttributeIndices("" + attributeIndexToRemove); // Specify the index of the attribute to be removed
-
-	        // Set the input format for the filter
-	        removeFilter.setInputFormat(filteredData);
-
-	        // Apply the filter to remove the specified attribute
-	        Instances newData = Filter.useFilter(filteredData, removeFilter);
+	      
+	        Instances newData = removeAttribute(filteredData, "image");
 	        return newData;
 	    } catch (Exception e) {
 	   
@@ -128,5 +119,17 @@ public class ImageProcess {
         }
     }
 	   
+    public Instances removeAttribute(Instances data, String attributeName) throws Exception {
+        int attributeIndexToRemove = data.attribute(attributeName).index() + 1;
+
+        Remove removeFilter = new Remove();
+        removeFilter.setAttributeIndices("" + attributeIndexToRemove);
+
+        removeFilter.setInputFormat(data);
+
+        Instances newData = Remove.useFilter(data, removeFilter);
+
+        return newData;
+    }
 
 }

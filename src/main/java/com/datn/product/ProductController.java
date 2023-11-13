@@ -61,29 +61,20 @@ public class ProductController {
 	    	try {
 	            List<Product> allProducts = productDAO.selectAllProducts();
 
-	            // Calculate the total number of products
 	            int totalProducts = allProducts.size();
 
-	            // Calculate the total number of pages
 	            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
 
-	            // Ensure currentPage is within valid range
 	            if (currentPage < 1) {
 	                currentPage = 1;
 	            } else if (currentPage > totalPages) {
 	                currentPage = totalPages;
 	            }
-
-	            // Calculate the start index for the current page
 	            int startIndex = (currentPage - 1) * PAGE_SIZE;
-
-	            // Calculate the end index for the current page
 	            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
 
-	            // Return only the products for the current page
 	            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
 
-	            // Create a response object containing the products and additional information
 	            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
 	            
 	            return ResponseEntity.ok(response);
@@ -111,7 +102,7 @@ public class ProductController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Object searchByImage(@RequestBody String data, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
-		System.out.println(data);
+		
 		List<Product> allProducts = new ArrayList();
 		try {
 			if(data.length() > 200) {
@@ -123,29 +114,21 @@ public class ProductController {
 				allProducts = productDAO.selectAllProductByName(keyword);
 			}
 
-            // Calculate the total number of products
             int totalProducts = allProducts.size();
-
-            // Calculate the total number of pages
             int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
 
-            // Ensure currentPage is within valid range
             if (currentPage < 1) {
                 currentPage = 1;
             } else if (currentPage > totalPages) {
                 currentPage = totalPages;
             }
 
-            // Calculate the start index for the current page
             int startIndex = (currentPage - 1) * PAGE_SIZE;
 
-            // Calculate the end index for the current page
             int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
 
-            // Return only the products for the current page
             List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
 
-            // Create a response object containing the products and additional information
             Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
