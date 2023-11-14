@@ -6,7 +6,7 @@ import com.datn.product.Product;
 
 public class DataResponse {
     private String status;
-    private List<Product> data; // Sử dụng kiểu List<Product> thay vì List data
+    private List<Product> data; 
 
     public String getStatus() {
         return status;
@@ -16,15 +16,15 @@ public class DataResponse {
         this.status = status;
     }
 
-    public List<Product> getData() { // Sử dụng kiểu List<Product> thay vì List getData()
+    public List<Product> getData() { 
         return data;
     }
 
-    public void setData(List<Product> data) { // Sử dụng kiểu List<Product> thay vì List setData()
+    public void setData(List<Product> data) { 
         this.data = data;
     }
 
-    public DataResponse(String status, List<Product> data) { // Sử dụng kiểu List<Product> thay vì List data
+    public DataResponse(String status, List<Product> data) { 
         this.status = status;
         this.data = data;
     }

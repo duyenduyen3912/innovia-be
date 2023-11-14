@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -86,6 +87,7 @@ public class ProductDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+			
 			return Products;
 		}
 		
@@ -147,7 +149,7 @@ public class ProductDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		
+			
 			return Products;
 		}
 		public List<Product> selectAllProductByImage(String search){
@@ -159,54 +161,49 @@ public class ProductDAO {
 				String data = searchImage.loadImageFromMemory(search);
 				Instances dataset = searchImage.createInstance(data);
 				Instances extract = searchImage.extractColorHistogram(dataset);
-			
 				Instances imageNeighbors = resInstance.SearchImage(extract);
-				image_result = res.Result(imageNeighbors);
-		
+				if(imageNeighbors.size() != 0) image_result = res.Result(imageNeighbors);
+				else return Collections.emptyList();
 				searchImage.deleteImageFile(data);
 			} catch (IOException e) {
 	            e.printStackTrace();
 	        }
 			
-            
 			List<Product> Products = new ArrayList<>();
-			try(Connection connection = getConnection()) {
-				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
-				Set<Integer> addedIds = new HashSet<>();
-				for (String imageIndex : image_result) {
-				
-					preparedStatement.setString(1,'%' +imageIndex+ '%');
-					ResultSet resultSet = preparedStatement.executeQuery();
-					if (resultSet.next())
-					{
-						int id = resultSet.getInt("id");
-						if(!addedIds.contains(id)) {
-							String name = resultSet.getString("name");
-							String description = resultSet.getString("description");
-							String category = resultSet.getString("category");
-							String tag = resultSet.getString("tag");
-							String long_description = resultSet.getString("long_description");
-							String weight = resultSet.getString("weight");
-							String size = resultSet.getString("size");
-							String image = resultSet.getString("image");
-							int price = resultSet.getInt("price");
-							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
-							Products.add(b);
-							addedIds.add(id);
+		
+				try(Connection connection = getConnection()) {
+					PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
+					Set<Integer> addedIds = new HashSet<>();
+					for (String imageIndex : image_result) {
+					
+						preparedStatement.setString(1,'%' +imageIndex+ '%');
+						ResultSet resultSet = preparedStatement.executeQuery();
+						if (resultSet.next())
+						{
+							int id = resultSet.getInt("id");
+							if(!addedIds.contains(id)) {
+								String name = resultSet.getString("name");
+								String description = resultSet.getString("description");
+								String category = resultSet.getString("category");
+								String tag = resultSet.getString("tag");
+								String long_description = resultSet.getString("long_description");
+								String weight = resultSet.getString("weight");
+								String size = resultSet.getString("size");
+								String image = resultSet.getString("image");
+								int price = resultSet.getInt("price");
+								Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+								Products.add(b);
+								addedIds.add(id);
+							} 
+							
 						} 
-						
-					} 
-					} 
-				
-					}
-					catch(Exception e) {
-						e.printStackTrace();
-					}
+						} 
+					
+						}
+						catch(Exception e) {
+							e.printStackTrace();
+						}
+			System.out.println(Products);
 					return Products;
 				}
-				
-			
-		
-		
-	
 }

@@ -104,6 +104,7 @@ public class ProductController {
 	public Object searchByImage(@RequestBody String data, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
 		
 		List<Product> allProducts = new ArrayList();
+		Response response = null;
 		try {
 			if(data.length() > 200) {
 				
@@ -113,23 +114,26 @@ public class ProductController {
 				String keyword = data.substring(1, data.length() - 1);
 				allProducts = productDAO.selectAllProductByName(keyword);
 			}
+			if(allProducts.size() != 0) {
+				int totalProducts = allProducts.size();
+				int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
+				
+				if (currentPage < 1) {
+					currentPage = 1;
+				} else if (currentPage > totalPages) {
+					currentPage = totalPages;
+				}
+				
+				int startIndex = (currentPage - 1) * PAGE_SIZE;
+				
+				int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
+				
+				List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
+				
+				response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
+				
+			} else response = new Response("success", 0, 0, 0, allProducts);
 
-            int totalProducts = allProducts.size();
-            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
-
-            if (currentPage < 1) {
-                currentPage = 1;
-            } else if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
-
-            int startIndex = (currentPage - 1) * PAGE_SIZE;
-
-            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
-
-            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
-
-            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
      

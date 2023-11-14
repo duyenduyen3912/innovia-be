@@ -44,19 +44,18 @@ public class Knn extends KnowledgeModel {
 
         int k = createInstances.size();  
         Instances neighborsInstances = search.kNearestNeighbours(queryData.instance(0), 20);
-        System.out.println(neighborsInstances);
         Instances neighbors = new Instances(createInstances, 0);
 
         for (int i = 0; i < neighborsInstances.size(); i++) {
             Instance neighborInstance = neighborsInstances.get(i);
             double distance = search.getDistances()[i];
-            System.out.println("khoang cach "+ i +distance);
+      
             if (distance <= radius) {
-            	 System.out.println("ok");
+           
                 neighbors.add(neighborInstance);
             }
         }
-        System.out.println("result" + neighbors);
+   
         return neighbors;
     }
     
