@@ -43,7 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.datn.response.DataResponse;
 import com.datn.response.Response;
-
+import com.datn.response.StringResponse;
 
 import org.apache.commons.io.IOUtils;
 
@@ -57,46 +57,75 @@ public class ProductController {
 	 private static final int PAGE_SIZE = 9;
 	 
 	    @GetMapping("/products")
-	    public Object getProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
-	    	try {
-	            List<Product> allProducts = productDAO.selectAllProducts();
+    public Object getProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
+    	try {
+            List<Product> allProducts = productDAO.selectAllProducts();
 
-	            int totalProducts = allProducts.size();
+            int totalProducts = allProducts.size();
 
-	            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
+            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
 
-	            if (currentPage < 1) {
-	                currentPage = 1;
-	            } else if (currentPage > totalPages) {
-	                currentPage = totalPages;
-	            }
-	            int startIndex = (currentPage - 1) * PAGE_SIZE;
-	            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
+            if (currentPage < 1) {
+                currentPage = 1;
+            } else if (currentPage > totalPages) {
+                currentPage = totalPages;
+            }
+            int startIndex = (currentPage - 1) * PAGE_SIZE;
+            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
 
-	            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
+            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
 
-	            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
-	            
-	            return ResponseEntity.ok(response);
-	        } catch (Exception e) {
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-	        }
-	    }
-	    
-	    @GetMapping("/DProduct")
-		public DataResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
-	    	Product product = productDAO.selectProduct(id);
+            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    
+    @GetMapping("/DProduct")
+	public DataResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
+    	Product product = productDAO.selectProduct(id);
 
-	        if (product != null) {
-	            List<Product> productList = new ArrayList<>();
-	            productList.add(product);
-	            DataResponse res = new DataResponse("success", productList);
-	            return res;
-	        } else {
-	            return new DataResponse("error", null);
-	        }
-		}
-		 
+        if (product != null) {
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            DataResponse res = new DataResponse("success", productList);
+            return res;
+        } else {
+            return new DataResponse("error", null);
+        }
+	}
+	
+    @GetMapping("/Category")
+	public StringResponse getCategory() throws IOException{
+    	List<String> category = new ArrayList<>();
+    	category = productDAO.selectCategory();
+    	StringResponse res = null;
+    	if(category.size() != 0) {
+    		res = new StringResponse("success", category);
+    	} else res = new StringResponse("success", category);
+    	return res;
+	}
+    
+    @GetMapping("/GetProductByCategory")
+	public Object getPoductByCategory(
+			@RequestParam(name = "category", required = false) String category
+			 
+	) throws IOException{
+    	Response response = null;
+    	List<Product> allProducts = new ArrayList();
+    	allProducts = productDAO.selectAllProductByCategory(category);
+    	if(allProducts.size() != 0) {
+    		int totalProducts = allProducts.size();
+
+            response = new Response("success", totalProducts, 0, 0, allProducts);
+            
+            
+    	} else response = new Response("faild", 0, 0, 0, allProducts);
+         
+        return ResponseEntity.ok(response);
+	}
 	 
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
@@ -140,6 +169,8 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 	}
+	
+	
 	
 
 

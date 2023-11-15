@@ -1,9 +1,7 @@
 package com.datn.product;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,14 +14,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.logging.log4j.CloseableThreadContext.Instance;
-
 import com.datn.searchByImage.Image;
 import com.datn.searchByImage.ImageProcess;
 import com.datn.searchByImage.ImageResult;
 
-import weka.core.Attribute;
-import weka.core.DenseInstance;
 import weka.core.Instances;
 
 
@@ -36,9 +30,9 @@ public class ProductDAO {
 		private String jdbcPassword = "tothichmeou39";
 		
 		private static final String SELECT_ALL_Product = "select * from product";
-		private static final String SELECT_ALL_ProductS_CATEGORY = "select * from product where category=?";
+		private static final String SELECT_ALL_Product_CATEGORY = "select * from product where category=? LIMIT 12";
 		private static final String SELECT_Product_BY_ID ="select * from product where id= ?";
-		private static final String SELECT_CATEGORY = "select distinct category from Product";
+		private static final String SELECT_CATEGORY = "select distinct category from product";
 		private static final String SEARCH_Product_BY_NAME ="select * from product where name like ?";
 		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
 		private static final String RATE_CMT_SQL = "SELECT distinct name, author,detail,comment.idProduct, image,AVG(rate) as rating\r\n"
@@ -90,12 +84,7 @@ public class ProductDAO {
 			
 			return Products;
 		}
-		
-		
-		
-		
-		
-	
+
 		
 		public Product selectProduct(int idProduct) {
 			Product aProduct = new Product();
@@ -123,7 +112,51 @@ public class ProductDAO {
 			return aProduct;
 		}
 		
+		public List<String> selectCategory() {
+			List<String> category = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY);
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next())
+				{
+					String c = resultSet.getString("category");
+					category.add(c);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return category;
+		}
 		
+		public List<Product> selectAllProductByCategory (String label) {
+	
+			List<Product> Products = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_Product_CATEGORY);
+				preparedStatement.setString(1,label);
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next())
+				{
+					int id = resultSet.getInt("id");
+					String name = resultSet.getString("name");
+					String description = resultSet.getString("description");
+					String category = resultSet.getString("category");
+					String tag = resultSet.getString("tag");
+					String long_description = resultSet.getString("long_description");
+					String weight = resultSet.getString("weight");
+					String size = resultSet.getString("size");
+					String image = resultSet.getString("image");
+					int price = resultSet.getInt("price");
+					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+					Products.add(b);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return Products;
+		}
+	
 		
 		public List<Product> selectAllProductByName(String search){
 			List<Product> Products = new ArrayList<>();
@@ -153,18 +186,24 @@ public class ProductDAO {
 			return Products;
 		}
 		public List<Product> selectAllProductByImage(String search){
-			ImageProcess searchImage = new ImageProcess();
+			ImageProcess imageProcess = new ImageProcess();
 			ImageResult res = new ImageResult();
 			Image resInstance = new Image();
 			List<String> image_result = new ArrayList();
 			try {
-				String data = searchImage.loadImageFromMemory(search);
-				Instances dataset = searchImage.createInstance(data);
-				Instances extract = searchImage.extractColorHistogram(dataset);
+				String data = imageProcess.loadImageFromMemory(search);
+				Instances dataset = imageProcess.createInstance(data);
+				
+				Instances predict_label = imageProcess.createInstanceLabel(data);
+				
+				Instances extract = imageProcess.extractColorHistogram(dataset);
+				
 				Instances imageNeighbors = resInstance.SearchImage(extract);
+				
+				String imageLabel = resInstance.predictLabel(predict_label);
 				if(imageNeighbors.size() != 0) image_result = res.Result(imageNeighbors);
 				else return Collections.emptyList();
-				searchImage.deleteImageFile(data);
+				imageProcess.deleteImageFile(data);
 			} catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -203,7 +242,6 @@ public class ProductDAO {
 						catch(Exception e) {
 							e.printStackTrace();
 						}
-			System.out.println(Products);
 					return Products;
 				}
 }

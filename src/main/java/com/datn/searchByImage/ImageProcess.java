@@ -33,37 +33,53 @@ public class ImageProcess {
 
     private void initializeAttributes() {
         Attribute image = new Attribute("image", (ArrayList<String>) null);
-//        List<String> classValues = new ArrayList<>();
-//        classValues.add("Sofa");
-//        classValues.add("Ban");
-//        classValues.add("Ghe");
-//        classValues.add("BanGhe");
-//        classValues.add("Giuong");
-//        classValues.add("Ke");
-//        classValues.add("Cay");
-//        Attribute classDT = new Attribute("class", classValues);
 
         ArrayList<Attribute> attributes = new ArrayList<>();
         attributes.add(image);
-//        attributes.add(classDT);
 
         this.data = new Instances("SearchImage", attributes, 1);
-//        this.data.setClass(classDT);
     }
 
     public Instances createInstance(String imagePath) {
         DenseInstance instance = new DenseInstance(2);
         
         instance.setValue(this.data.attribute("image"), imagePath);
-//        instance.setMissing(this.data.attribute("class")); 
+
         this.data.add(instance);
         return this.data;
     }
+    
+    public Instances createInstanceLabel(String imagePath) {
+    	 Attribute image = new Attribute("image", (ArrayList<String>) null);
+	     List<String> classValues = new ArrayList<>();
+	     classValues.add("Sofa");
+	     classValues.add("Ban");
+	     classValues.add("Ghe");
+	     classValues.add("BanGhe");
+	     classValues.add("Giuong");
+	     classValues.add("Ke");
+	     classValues.add("Cay");
+	     Attribute classDT = new Attribute("class", classValues);
 
+       ArrayList<Attribute> attributes = new ArrayList<>();
+       attributes.add(image);
+       attributes.add(classDT);
+
+       Instances InstancesLabel = new Instances("Predict_Label", attributes, 1);
+       InstancesLabel.setClass(classDT);
+       DenseInstance instance = new DenseInstance(2);
+       
+       instance.setValue(image, imagePath);
+       instance.setMissing(classDT); 
+       InstancesLabel.add(instance);
+       System.out.println(InstancesLabel);
+       return InstancesLabel;
+    }
+    
     public String loadImageFromMemory(String imageSearch) throws IOException {
 		 
    	try {
-
+   		
        byte[] imageBytes = Base64.decodeBase64(imageSearch);
        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
 

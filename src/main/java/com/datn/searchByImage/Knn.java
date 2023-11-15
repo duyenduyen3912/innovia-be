@@ -2,24 +2,15 @@ package com.datn.searchByImage;
 
 import weka.classifiers.lazy.IBk;
 import weka.classifiers.Evaluation;
-import weka.core.EuclideanDistance;
 import weka.core.Instances;
-import weka.core.neighboursearch.LinearNNSearch;
-import weka.core.neighboursearch.NearestNeighbourSearch;
-import weka.core.Instance;
-import weka.core.converters.ConverterUtils.DataSource;
-import weka.core.converters.ConverterUtils.DataSink;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.stream.Collectors;
+
+
 
 public class Knn extends KnowledgeModel {
     private IBk knn;
+    Evaluation eval;
     public Knn(Instances trainingData, String m_opts, String d_opts) throws Exception {
         super(trainingData, m_opts, d_opts);
     }
@@ -32,31 +23,29 @@ public class Knn extends KnowledgeModel {
         knn.setOptions(model_options);
         knn.buildClassifier(this.trainSet);
     }
+    
+    public void evaluateKNN(Instances test) throws Exception {
+        this.testSet = test;
+        this.testSet.setClassIndex(this.testSet.numAttributes()-1);
+
+      
+        Random rd = new Random(1);
+        int folds = 10;
+        eval = new Evaluation(this.trainSet);
+        eval.crossValidateModel(knn, this.testSet, folds, rd);
+        System.out.println(eval.toSummaryString("\n -----Kết quả đánh giá mô hình nhận diện loại hình ảnh-----\n", false));
+    }
 
     
-    public Instances findNeighborsInRadius(Instances queryData, double radius, Instances createInstances) throws Exception {
-        queryData.setClassIndex(queryData.numAttributes() - 1);
-
-        // Set up NearestNeighbourSearch
-        NearestNeighbourSearch search = new LinearNNSearch();
-        search.setDistanceFunction(new EuclideanDistance());
-        search.setInstances(createInstances);
-
-        int k = createInstances.size();  
-        Instances neighborsInstances = search.kNearestNeighbours(queryData.instance(0), 20);
-        Instances neighbors = new Instances(createInstances, 0);
-
-        for (int i = 0; i < neighborsInstances.size(); i++) {
-            Instance neighborInstance = neighborsInstances.get(i);
-            double distance = search.getDistances()[i];
-      
-            if (distance <= radius) {
-           
-                neighbors.add(neighborInstance);
-            }
-        }
-   
-        return neighbors;
+    public String predictImage(Instances predict) throws Exception {
+    	predict.setClassIndex(predict.numAttributes() - 1);
+    	
+    	double predict_label = knn.classifyInstance(predict.instance(0));
+    	predict.instance(0).setClassValue(predict_label);
+    	
+    	return predict.instance(0).stringValue(predict.classIndex());
+    	
+    	
     }
     
 
