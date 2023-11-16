@@ -3,6 +3,7 @@ package com.datn.searchByImage;
 import weka.classifiers.lazy.IBk;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class Knn extends KnowledgeModel {
         this.knn = new IBk();
         knn.setOptions(model_options);
         knn.buildClassifier(this.trainSet);
+        SerializationHelper.write("data\\knn_model.model", knn);
     }
     
     public void evaluateKNN(Instances test) throws Exception {

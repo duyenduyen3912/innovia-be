@@ -42,7 +42,9 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.datn.response.DataResponse;
+import com.datn.response.ListProduct;
 import com.datn.response.Response;
+import com.datn.response.SearchImageResponse;
 import com.datn.response.StringResponse;
 
 import org.apache.commons.io.IOUtils;
@@ -132,16 +134,20 @@ public class ProductController {
 	@ResponseBody
 	public Object searchByImage(@RequestBody String data, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
 		
-		List<Product> allProducts = new ArrayList();
+		ListProduct result_product = null;
+		List<Product> allProducts = new ArrayList<>();
 		Response response = null;
+		Boolean isSearchByName = false;
 		try {
 			if(data.length() > 200) {
 				
-				allProducts = productDAO.selectAllProductByImage(data);
+				result_product = productDAO.selectAllProductByImage(data);
+				allProducts = result_product.getProduct();
 			}
 			else {
 				String keyword = data.substring(1, data.length() - 1);
 				allProducts = productDAO.selectAllProductByName(keyword);
+				isSearchByName = true;
 			}
 			if(allProducts.size() != 0) {
 				int totalProducts = allProducts.size();
@@ -152,18 +158,25 @@ public class ProductController {
 				} else if (currentPage > totalPages) {
 					currentPage = totalPages;
 				}
-				
 				int startIndex = (currentPage - 1) * PAGE_SIZE;
 				
 				int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
 				
 				List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
 				
-				response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
+				if(isSearchByName) {
+					return new Response("success", totalProducts, totalPages, currentPage, productsForPage);
+				} else {
+					return new SearchImageResponse("success", totalProducts, totalPages, currentPage, productsForPage, result_product.getRecommend());
+				}
+			} else {
+				if(isSearchByName) {
+					return new Response("success", 0, 0, 0, allProducts);
+				} else {
+					return new SearchImageResponse("success", 0, 0, 0, allProducts, result_product.getRecommend());
+				}
 				
-			} else response = new Response("success", 0, 0, 0, allProducts);
-
-            return ResponseEntity.ok(response);
+			}
         } catch (Exception e) {
      
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

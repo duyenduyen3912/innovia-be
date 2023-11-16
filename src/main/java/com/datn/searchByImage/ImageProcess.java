@@ -72,7 +72,7 @@ public class ImageProcess {
        instance.setValue(image, imagePath);
        instance.setMissing(classDT); 
        InstancesLabel.add(instance);
-       System.out.println(InstancesLabel);
+
        return InstancesLabel;
     }
     

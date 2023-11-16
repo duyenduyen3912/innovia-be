@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.datn.response.ListProduct;
 import com.datn.searchByImage.Image;
 import com.datn.searchByImage.ImageProcess;
 import com.datn.searchByImage.ImageResult;
@@ -185,11 +186,16 @@ public class ProductDAO {
 			
 			return Products;
 		}
-		public List<Product> selectAllProductByImage(String search){
+		
+		public ListProduct selectAllProductByImage(String search){
 			ImageProcess imageProcess = new ImageProcess();
 			ImageResult res = new ImageResult();
 			Image resInstance = new Image();
+			String imageLabel = null;
 			List<String> image_result = new ArrayList();
+			List<Product> products = new ArrayList<>();
+			List<Product> recommend = new ArrayList<>();
+			ListProduct result_list = null;
 			try {
 				String data = imageProcess.loadImageFromMemory(search);
 				Instances dataset = imageProcess.createInstance(data);
@@ -200,48 +206,58 @@ public class ProductDAO {
 				
 				Instances imageNeighbors = resInstance.SearchImage(extract);
 				
-				String imageLabel = resInstance.predictLabel(predict_label);
-				if(imageNeighbors.size() != 0) image_result = res.Result(imageNeighbors);
-				else return Collections.emptyList();
+				imageLabel = resInstance.predictLabel(predict_label);
+				
+				if(imageNeighbors.size() != 0) {
+					image_result = res.Result(imageNeighbors);
+					products = getProductByImage(image_result);
+					recommend = selectAllProductByCategory(imageLabel);
+				}
+				else return result_list = new ListProduct(Collections.emptyList(), Collections.emptyList());
 				imageProcess.deleteImageFile(data);
 			} catch (IOException e) {
 	            e.printStackTrace();
 	        }
 			
-			List<Product> Products = new ArrayList<>();
+			return result_list = new ListProduct(products, recommend);
+		}
 		
-				try(Connection connection = getConnection()) {
-					PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
-					Set<Integer> addedIds = new HashSet<>();
-					for (String imageIndex : image_result) {
-					
-						preparedStatement.setString(1,'%' +imageIndex+ '%');
-						ResultSet resultSet = preparedStatement.executeQuery();
-						if (resultSet.next())
-						{
-							int id = resultSet.getInt("id");
-							if(!addedIds.contains(id)) {
-								String name = resultSet.getString("name");
-								String description = resultSet.getString("description");
-								String category = resultSet.getString("category");
-								String tag = resultSet.getString("tag");
-								String long_description = resultSet.getString("long_description");
-								String weight = resultSet.getString("weight");
-								String size = resultSet.getString("size");
-								String image = resultSet.getString("image");
-								int price = resultSet.getInt("price");
-								Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
-								Products.add(b);
-								addedIds.add(id);
-							} 
-							
+		private List<Product> getProductByImage (List<String> image_result ){
+			List<Product> Products = new ArrayList<>();
+			
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_IMAGE);
+				Set<Integer> addedIds = new HashSet<>();
+				for (String imageIndex : image_result) {
+				
+					preparedStatement.setString(1,'%' +imageIndex+ '%');
+					ResultSet resultSet = preparedStatement.executeQuery();
+					if (resultSet.next())
+					{
+						int id = resultSet.getInt("id");
+						if(!addedIds.contains(id)) {
+							String name = resultSet.getString("name");
+							String description = resultSet.getString("description");
+							String category = resultSet.getString("category");
+							String tag = resultSet.getString("tag");
+							String long_description = resultSet.getString("long_description");
+							String weight = resultSet.getString("weight");
+							String size = resultSet.getString("size");
+							String image = resultSet.getString("image");
+							int price = resultSet.getInt("price");
+							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+							Products.add(b);
+							addedIds.add(id);
 						} 
-						} 
-					
-						}
-						catch(Exception e) {
-							e.printStackTrace();
-						}
-					return Products;
-				}
+						
+					} 
+					} 
+				
+					}
+					catch(Exception e) {
+						e.printStackTrace();
+					}
+				return Products;
+			}
+		
 }
