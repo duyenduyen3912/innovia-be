@@ -14,10 +14,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.datn.model.Product;
+import com.datn.model.Review;
 import com.datn.response.ListProduct;
 import com.datn.searchByImage.Image;
 import com.datn.searchByImage.ImageProcess;
 import com.datn.searchByImage.ImageResult;
+
 
 import weka.core.Instances;
 
@@ -30,18 +33,20 @@ public class ProductDAO {
 		private String jdbcUsername = "root";
 		private String jdbcPassword = "tothichmeou39";
 		
-		private static final String SELECT_ALL_Product = "select * from product";
-		private static final String SELECT_ALL_Product_CATEGORY = "select * from product where category=? LIMIT 12";
+		private static final String SELECT_ALL_Product = "select * from product ORDER BY star DESC";
+		private static final String SELECT_ALL_Product_CATEGORY = "select * from product where category=?";
 		private static final String SELECT_Product_BY_ID ="select * from product where id= ?";
 		private static final String SELECT_CATEGORY = "select distinct category from product";
 		private static final String SEARCH_Product_BY_NAME ="select * from product where name like ?";
 		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
-		private static final String RATE_CMT_SQL = "SELECT distinct name, author,detail,comment.idProduct, image,AVG(rate) as rating\r\n"
-				+ "FROM Product, comment\r\n"
-				+ "where Product.idProduct = comment.idProduct\r\n"
-				+ "GROUP BY comment.idProduct\r\n"
-				+ "ORDER BY rating DESC\r\n"
-				+ "LIMIT 5;";
+		private static final String ADD_REVIEW = "insert into rate (idproduct, star, comment) values (?,?,?);";
+		private static final String SELECT_REVIEW = "SELECT * FROM rate WHERE idproduct = ?";
+		private static final String UPDATE_STAR = "UPDATE product\r\n"
+												+ "SET star = ROUND(\r\n"
+												+ "    (SELECT AVG(star) FROM rate WHERE rate.idproduct = ?),\r\n"
+												+ "    1\r\n"
+												+ ")\r\n"
+												+ "WHERE product.id = ?;";
 		public ProductDAO() {
 			
 		}
@@ -76,7 +81,8 @@ public class ProductDAO {
 					String weight = resultSet.getString("weight");
 					String size = resultSet.getString("size");
 					String image = resultSet.getString("image");
-					Product b = new Product(name,description, category, tag, long_description, weight, size, image, idProduct, price);
+					float star = resultSet.getFloat("star");
+					Product b = new Product(name,description, category, tag, long_description, weight, size, image, idProduct, price, star);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -106,6 +112,7 @@ public class ProductDAO {
 					aProduct.setSize(result.getString("size"));
 					aProduct.setPrice(result.getInt("price"));
 					aProduct.setImage(result.getString("image"));
+					aProduct.setStar(result.getFloat("star"));
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -148,7 +155,8 @@ public class ProductDAO {
 					String size = resultSet.getString("size");
 					String image = resultSet.getString("image");
 					int price = resultSet.getInt("price");
-					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+					float star = resultSet.getFloat("star");
+					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -177,7 +185,8 @@ public class ProductDAO {
 					String size = resultSet.getString("size");
 					String image = resultSet.getString("image");
 					int price = resultSet.getInt("price");
-					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+					float star = resultSet.getFloat("star");
+					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -245,7 +254,8 @@ public class ProductDAO {
 							String size = resultSet.getString("size");
 							String image = resultSet.getString("image");
 							int price = resultSet.getInt("price");
-							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price);
+							float star = resultSet.getFloat("star");
+							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
 							Products.add(b);
 							addedIds.add(id);
 						} 
@@ -259,5 +269,53 @@ public class ProductDAO {
 					}
 				return Products;
 			}
+		
+		public String insertReview(Review r) {
+			try(Connection connection = getConnection()) {
+				
+				PreparedStatement ps = connection.prepareStatement(ADD_REVIEW);
+				int result = 0;
+				ps.setInt(1, r.getIdproduct());
+				ps.setInt(2, r.getStar());
+				ps.setString(3, r.getComment());
+				result = ps.executeUpdate();
+				UpdateStarProduct(r.getIdproduct());
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "success";
+		}
+		
+		public List<Review> getReviewOfProduct(int idproduct) {
+			List<Review> r = new ArrayList();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REVIEW);
+				preparedStatement.setInt(1,idproduct);
+				ResultSet result = preparedStatement.executeQuery();
+				while(result.next())
+				{
+					int id = result.getInt("idproduct");
+					int star = result.getInt("star");
+					String comment = result.getString("comment");
+					
+					Review list_review = new Review(idproduct, star, comment);
+					r.add(list_review);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return r;
+		}
+		
+		private void UpdateStarProduct (int idproduct)  {
+			try (Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STAR);
+				preparedStatement.setInt(1, idproduct);
+				preparedStatement.setInt(2, idproduct);
+				preparedStatement.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 }

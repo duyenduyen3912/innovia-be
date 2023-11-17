@@ -50,7 +50,7 @@ public class Image {
 		 try {
 	     File modelFile = new File("data\\knn_model.model");
 	     if(modelFile.exists()) {
-	    	 System.out.println("ok");
+	    
 	    	 knn = (IBk) SerializationHelper.read("data\\knn_model.model");
 	    	 label = predictImage.predictImage(predict_label, knn);
 	     } else {

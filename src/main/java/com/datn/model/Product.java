@@ -1,13 +1,31 @@
-package com.datn.product;
+package com.datn.model;
 
 public class Product {
 	private String name, description, category, tag, long_description, weight, size, image;
 	private int id, price;
+	private float star;
 	
 	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public Product(String name, String description, String category, String tag, String long_description, String weight,
+			String size, String image, int id, int price, float star) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.tag = tag;
+		this.long_description = long_description;
+		this.weight = weight;
+		this.size = size;
+		this.image = image;
+		this.id = id;
+		this.price = price;
+		this.star = star;
 	}
 
 
@@ -111,22 +129,14 @@ public class Product {
 	}
 
 
-	public Product(String name, String description, String category, String tag, String long_description, String weight,
-			String size, String image, int id, int price) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.category = category;
-		this.tag = tag;
-		this.long_description = long_description;
-		this.weight = weight;
-		this.size = size;
-		this.image = image;
-		this.id = id;
-		this.price = price;
+	public float getStar() {
+		return star;
 	}
 
 
+	public void setStar(float star) {
+		this.star = star;
+	}
 
 
 	

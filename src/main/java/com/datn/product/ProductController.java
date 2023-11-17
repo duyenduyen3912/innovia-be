@@ -41,11 +41,16 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.datn.model.Product;
+import com.datn.model.Review;
 import com.datn.response.DataResponse;
 import com.datn.response.ListProduct;
 import com.datn.response.Response;
+import com.datn.response.ReviewResponse;
 import com.datn.response.SearchImageResponse;
 import com.datn.response.StringResponse;
+import com.datn.response.DivideData;
+
 
 import org.apache.commons.io.IOUtils;
 
@@ -56,29 +61,16 @@ import org.apache.commons.io.IOUtils;
 public class ProductController {
 	
 	private ProductDAO productDAO = new ProductDAO();
-	 private static final int PAGE_SIZE = 9;
+	private static final int PAGE_SIZE = 9;
+	DivideData div = new DivideData(); 
 	 
 	    @GetMapping("/products")
     public Object getProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
     	try {
             List<Product> allProducts = productDAO.selectAllProducts();
 
-            int totalProducts = allProducts.size();
+            Response response = div.Divide(allProducts, PAGE_SIZE, currentPage, "success");
 
-            int totalPages = (int) Math.ceil((double) totalProducts / PAGE_SIZE);
-
-            if (currentPage < 1) {
-                currentPage = 1;
-            } else if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
-            int startIndex = (currentPage - 1) * PAGE_SIZE;
-            int endIndex = Math.min(startIndex + PAGE_SIZE, totalProducts);
-
-            List<Product> productsForPage = allProducts.subList(startIndex, endIndex);
-
-            Response response = new Response("success", totalProducts, totalPages, currentPage, productsForPage);
-            
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -112,18 +104,14 @@ public class ProductController {
     
     @GetMapping("/GetProductByCategory")
 	public Object getPoductByCategory(
-			@RequestParam(name = "category", required = false) String category
-			 
+			@RequestParam(name = "category", required = false) String category,
+			@RequestParam(name= "page", required = false) int currentPage
 	) throws IOException{
     	Response response = null;
     	List<Product> allProducts = new ArrayList();
     	allProducts = productDAO.selectAllProductByCategory(category);
     	if(allProducts.size() != 0) {
-    		int totalProducts = allProducts.size();
-
-            response = new Response("success", totalProducts, 0, 0, allProducts);
-            
-            
+    		response = div.Divide(allProducts, PAGE_SIZE, currentPage, "category");
     	} else response = new Response("faild", 0, 0, 0, allProducts);
          
         return ResponseEntity.ok(response);
@@ -181,6 +169,28 @@ public class ProductController {
      
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+	}
+	
+	@PostMapping("/addReview")
+	@ResponseBody
+	public String addReview(@RequestBody Review r) throws IOException {
+		String result = productDAO.insertReview(r);
+		return result;
+	}
+	
+	@GetMapping("/getReview")
+	public Object getReview (
+			@RequestParam (name = "idproduct", required = false) int idproduct,
+			@RequestParam (name = "page", required = false, defaultValue = "1") int currentPage
+	) {
+		ReviewResponse response = null;
+		List<Review> r = productDAO.getReviewOfProduct(idproduct);
+		if(r.size() != 0) {
+			response = div.DivideReviews(r, 5, currentPage, "success");
+		} else {
+			response = div.DivideReviews(r, 5, currentPage, "faild");
+		}
+		return response;
 	}
 	
 	

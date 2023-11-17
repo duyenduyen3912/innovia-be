@@ -1,7 +1,8 @@
 package com.datn.response;
 
 import java.util.List;
-import com.datn.product.Product;
+
+import com.datn.model.Product;
 
 public class ListProduct {
 	private List<Product> product;
