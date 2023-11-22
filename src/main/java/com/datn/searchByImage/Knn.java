@@ -4,7 +4,7 @@ import weka.classifiers.lazy.IBk;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
-
+import weka.core.converters.ConverterUtils.DataSource;
 import java.util.Random;
 
 
@@ -17,7 +17,6 @@ public class Knn extends KnowledgeModel {
     }
 
     public void buildKNN(Instances trainingData) throws Exception {
-    	
         this.trainSet = trainingData;
         this.trainSet.setClassIndex(this.trainSet.numAttributes() - 1);
         this.knn = new IBk();
@@ -29,8 +28,6 @@ public class Knn extends KnowledgeModel {
     public void evaluateKNN(Instances test) throws Exception {
         this.testSet = test;
         this.testSet.setClassIndex(this.testSet.numAttributes()-1);
-
-      
         Random rd = new Random(1);
         int folds = 10;
         eval = new Evaluation(this.trainSet);
@@ -39,15 +36,15 @@ public class Knn extends KnowledgeModel {
     }
 
     
-    public String predictImage(Instances predict) throws Exception {
-    	predict.setClassIndex(predict.numAttributes() - 1);
+    public String predictImage(Instances predict  ) throws Exception {
     	
-    	double predict_label = knn.classifyInstance(predict.instance(0));
-    	predict.instance(0).setClassValue(predict_label);
+    	predict.setClassIndex(predict.numAttributes() - 1);
+        // predict
+        double predict_label = knn.classifyInstance(predict.instance(0));
+        predict.instance(0).setClassValue(predict_label);
+    	
     	
     	return predict.instance(0).stringValue(predict.classIndex());
-    	
-    	
     }
     
 

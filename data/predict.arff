@@ -1,7 +1,7 @@
-@relation predict_image
+@relation Predict_Label
 
 @attribute image string
-@attribute class {Sofa, BanGhe, Ban, Ghe, Cay, Giuong, Ke}
+@attribute class {Sofa,Ban,Ghe,BanGhe,Giuong,Ke,Cay,Tu}
 
 @data
-"image\\decode_image.jpg", ?
+'image\\image_20231121_220544434.png',Sofa

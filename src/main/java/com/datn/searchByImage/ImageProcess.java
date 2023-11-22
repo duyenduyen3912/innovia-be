@@ -46,6 +46,7 @@ public class ImageProcess {
         instance.setValue(this.data.attribute("image"), imagePath);
 
         this.data.add(instance);
+       
         return this.data;
     }
     
@@ -59,6 +60,7 @@ public class ImageProcess {
 	     classValues.add("Giuong");
 	     classValues.add("Ke");
 	     classValues.add("Cay");
+	     classValues.add("Tu");
 	     Attribute classDT = new Attribute("class", classValues);
 
        ArrayList<Attribute> attributes = new ArrayList<>();
@@ -70,7 +72,7 @@ public class ImageProcess {
        DenseInstance instance = new DenseInstance(2);
        
        instance.setValue(image, imagePath);
-       instance.setMissing(classDT); 
+       instance.setValue(classDT, "Sofa"); 
        InstancesLabel.add(instance);
 
        return InstancesLabel;
@@ -114,12 +116,12 @@ public class ImageProcess {
     }
     
     public Instances extractColorHistogram (Instances dataset)  {
-    
+    	
+    	
     	 try {
 	        SimpleColorHistogramFilter filter = new SimpleColorHistogramFilter();
 	        filter.setInputFormat(dataset);
-	        Instances filteredData = Filter.useFilter(data, filter);
-	      
+	        Instances filteredData = Filter.useFilter(dataset, filter);
 	        Instances newData = removeAttribute(filteredData, "image");
 	        return newData;
 	    } catch (Exception e) {

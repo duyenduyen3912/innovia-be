@@ -212,10 +212,11 @@ public class ProductDAO {
 				Instances predict_label = imageProcess.createInstanceLabel(data);
 				
 				Instances extract = imageProcess.extractColorHistogram(dataset);
+				Instances extract_label = imageProcess.extractColorHistogram(predict_label);
 				
 				Instances imageNeighbors = resInstance.SearchImage(extract);
 				
-				imageLabel = resInstance.predictLabel(predict_label);
+				imageLabel = resInstance.predictLabel(extract_label);
 				
 				if(imageNeighbors.size() != 0) {
 					image_result = res.Result(imageNeighbors);
