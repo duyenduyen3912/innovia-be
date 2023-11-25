@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.commons.codec.binary.Base64;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -41,8 +44,11 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.datn.model.Cart;
+import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
+import com.datn.response.CartResponse;
 import com.datn.response.DataResponse;
 import com.datn.response.ListProduct;
 import com.datn.response.Response;
@@ -192,6 +198,70 @@ public class ProductController {
 		}
 		return response;
 	}
+	
+	@PostMapping("/addToCart")
+	@ResponseBody
+	public Map<String, String> addToCart( @RequestBody Cart c) throws IOException{
+		String result = productDAO.AddProductToCart(c);
+		Map<String, String> response = new HashMap<>();
+		if(result.equals("error")) {
+	        response.put("status", "failed");
+	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+	        
+		} else {
+			response.put("status", "success");
+	        response.put("data", "Thêm sản phẩm thành công");
+	     
+		}
+		return response;
+	}
+	
+	@PostMapping("/selectCart")
+	@ResponseBody
+	public CartResponse selectCart( @RequestBody int id) throws IOException{
+		CartResponse c = null;
+		List<PCart> res = productDAO.selectProductInCart(id);
+		if(res.size() != 0) {
+			return c = new CartResponse("success", res);
+		} else return c = new CartResponse("failed", res);
+				
+	}
+	
+	@PostMapping("/updateCart")
+	@ResponseBody
+	public Map<String, String> updateCart( @RequestBody Cart c) throws IOException{
+		Map<String, String> response = new HashMap<>();
+		String res = productDAO.UpdateCart(c);
+		if(res.equals("error")) {
+			response.put("status", "failed");
+	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+	        return response;
+		} else {
+			response.put("status", "success");
+	        response.put("data", "Cập nhật thành công");
+	        return response;
+		}
+				
+	}
+	
+	@PostMapping("/deleteCart")
+	@ResponseBody
+	public Map<String, String> deleteCart( @RequestBody Cart c) throws IOException{
+		Map<String, String> response = new HashMap<>();
+		String res = productDAO.DeleteCart(c);
+		if(res.equals("error")) {
+			response.put("status", "failed");
+	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+	        return response;
+		} else {
+			response.put("status", "success");
+	        response.put("data", "Cập nhật thành công");
+	        return response;
+		}
+				
+	}
+	
+	
 	
 	
 	

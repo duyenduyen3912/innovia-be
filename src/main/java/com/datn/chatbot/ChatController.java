@@ -23,6 +23,7 @@ public class ChatController {
 	@PostMapping("/chat-answer")
 	@ResponseBody
 	public Chat ChatAnswer(@RequestBody String question) throws IOException {
+		System.out.println(question);
 		String question_final = null;
 		if(question.contains("=")) {
 			question_final = question.replaceAll("^=+|=+$", "");

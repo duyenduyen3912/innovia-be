@@ -7,6 +7,7 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public User(String username, String password, String email, String fullname, String phone, int id) {
 		super();
 		this.username = username;
@@ -14,8 +15,12 @@ public class User {
 		this.email = email;
 		this.fullname = fullname;
 		this.phone = phone;
+		
 		this.id = id;
 	}
+
+	
+
 	public String getUsername() {
 		return username;
 	}
@@ -52,6 +57,8 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public static User createEmptyUser() {
+        return new User();
+    }
 	
 }

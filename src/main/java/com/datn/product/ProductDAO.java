@@ -14,6 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.datn.model.Cart;
+import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
 import com.datn.response.ListProduct;
@@ -41,6 +43,15 @@ public class ProductDAO {
 		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
 		private static final String ADD_REVIEW = "insert into rate (idproduct, star, comment) values (?,?,?);";
 		private static final String SELECT_REVIEW = "SELECT * FROM rate WHERE idproduct = ?";
+		private static final String ADD_PRODUCT_TO_CART = "INSERT INTO cart (iduser, idproduct, quantity, note)\r\n"
+															+ "VALUES (?, ?, ?, ?)\r\n"
+															+ "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity), note = VALUES(note);";
+		private static final String SELECT_PRODUCT_IN_CART = "SELECT cart.idcart, cart.iduser, cart.idproduct, cart.quantity, cart.note, product.name, product.price, product.image\r\n"
+															+ "FROM cart\r\n"
+															+ "JOIN product ON cart.idproduct = product.id\r\n"
+															+ "WHERE cart.iduser = ?;\r\n";
+		private static final String UPDATE_CART = "UPDATE cart SET quantity = ? WHERE iduser = ? AND idproduct = ?";
+		private static final String DELETE_CART = "DELETE FROM cart WHERE iduser = ? AND idproduct = ?";
 		private static final String UPDATE_STAR = "UPDATE product\r\n"
 												+ "SET star = ROUND(\r\n"
 												+ "    (SELECT AVG(star) FROM rate WHERE rate.idproduct = ?),\r\n"
@@ -318,5 +329,81 @@ public class ProductDAO {
 				e.printStackTrace();
 			}
 		}
+		
+		public String AddProductToCart(Cart c) {
+			try (Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(ADD_PRODUCT_TO_CART);
+				int result = 0;
+				preparedStatement.setInt(1, c.getIduser());
+				preparedStatement.setInt(2, c.getIdproduct());
+				preparedStatement.setInt(3, c.getQuantity());
+				preparedStatement.setString(4, c.getNote());
+				int rowsUpdated = preparedStatement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    return "OK";
+                } 
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
+		}
+		
+		public List<PCart> selectProductInCart(int idUser) {
+			List<PCart> listProduct = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_IN_CART);
+				preparedStatement.setInt(1,idUser);
+				ResultSet result = preparedStatement.executeQuery();
+				while(result.next())
+				{
+					int iduser = result.getInt("iduser");
+					int idproduct =result.getInt("idproduct");
+					int quantity =result.getInt("quantity");
+					int price =result.getInt("price");
+					int total =result.getInt("quantity")*result.getInt("price");
+					String image = result.getString("image");
+					String name = result.getString("name");
+					PCart c = new PCart(iduser, idproduct,quantity, price,total, image, name);
+					listProduct.add(c);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return listProduct;
+		}
+		
+		public String UpdateCart (Cart c)  {
+			try (Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CART);
+				preparedStatement.setInt(1, c.getQuantity());
+				preparedStatement.setInt(2, c.getIduser());
+				preparedStatement.setInt(3, c.getIdproduct());
+				int rowsUpdated = preparedStatement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    return "OK";
+                } 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
+		}
+		
+		public String DeleteCart (Cart c)  {
+			try (Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CART);
+				preparedStatement.setInt(1, c.getIduser());
+				preparedStatement.setInt(2, c.getIdproduct());
+				int rowsUpdated = preparedStatement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    return "OK";
+                } 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
+		}
+		
+		
+		
 		
 }

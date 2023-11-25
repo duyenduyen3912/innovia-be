@@ -45,7 +45,31 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.6</version>
 		</dependency>
-		
+		<dependency>
+	        <groupId>org.apache.opennlp</groupId>
+	        <artifactId>opennlp-tools</artifactId>
+	        <version>1.9.3</version>
+    	</dependency>
+    	    <!-- Deeplearning4j Core -->
+	    <dependency>
+	        <groupId>org.deeplearning4j</groupId>
+	        <artifactId>deeplearning4j-core</artifactId>
+	        <version>1.0.0-beta7</version> <!-- Cập nhật phiên bản mới nhất -->
+	    </dependency>
+	
+	    <!-- Deeplearning4j UI -->
+	    <dependency>
+	        <groupId>org.deeplearning4j</groupId>
+	        <artifactId>deeplearning4j-ui</artifactId>
+	        <version>1.0.0-beta7</version> <!-- Cập nhật phiên bản mới nhất -->
+	    </dependency>
+	
+	    <!-- ND4J Backend -->
+	    <dependency>
+	        <groupId>org.nd4j</groupId>
+	        <artifactId>nd4j-native-platform</artifactId>
+	        <version>1.0.0-beta7</version> <!-- Cập nhật phiên bản mới nhất -->
+	    </dependency>
 	</dependencies>
 
 	<build>
