@@ -44,13 +44,19 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.datn.model.BestSelling;
 import com.datn.model.Cart;
+import com.datn.model.Order;
+import com.datn.model.OrderList;
 import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
+import com.datn.response.BestSellingProductResponse;
 import com.datn.response.CartResponse;
 import com.datn.response.DataResponse;
 import com.datn.response.ListProduct;
+import com.datn.response.OrderListResponse;
+import com.datn.response.OrderResponse;
 import com.datn.response.Response;
 import com.datn.response.ReviewResponse;
 import com.datn.response.SearchImageResponse;
@@ -261,10 +267,50 @@ public class ProductController {
 				
 	}
 	
+	@PostMapping("/order")
+	@ResponseBody
+	public Map<String, String> order( @RequestBody Order o) throws IOException{
+		String result = productDAO.Order(o);
+		Map<String, String> response = new HashMap<>();
+		if(result.equals("error")) {
+	        response.put("status", "failed");
+	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+	        
+		} else {
+			response.put("status", "success");
+	        response.put("data", "Đặt hàng thành công");
+	     
+		}
+		return response;
+	}
 	
+	@PostMapping("/selectOrderList")
+	@ResponseBody
+	public OrderListResponse orderList( @RequestBody int iduser) throws IOException{
+		List<OrderList> result = productDAO.selectOrders(iduser);
+		if(result.size() != 0) {
+			return new OrderListResponse("success", result);
+		} else {
+			return new OrderListResponse("failed", result);
+		}
+	}
 	
+	@GetMapping("/selectBestSellingProduct")
+	public BestSellingProductResponse bestSelling( ) throws IOException{
+		List<BestSelling> result = productDAO.selectBestSellingProduct();
+		if(result.size() != 0) {
+			return new BestSellingProductResponse("success", result);
+		} else {
+			return new BestSellingProductResponse("failed", result);
+		}
+	}
 	
-	
+	@PostMapping("/selectOrderItem")
+	@ResponseBody
+	public OrderResponse selectOrderItem (@RequestBody String id) throws IOException {
+		OrderResponse result = productDAO.selectOrder(id);
+		return result;
+	}
 
 
 	

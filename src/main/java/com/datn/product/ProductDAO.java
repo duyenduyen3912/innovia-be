@@ -8,17 +8,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.datn.model.BestSelling;
 import com.datn.model.Cart;
 import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
+import com.datn.model.Order;
+import com.datn.model.OrderList;
+import com.datn.model.OrderItem;
 import com.datn.response.ListProduct;
+import com.datn.response.OrderResponse;
 import com.datn.searchByImage.Image;
 import com.datn.searchByImage.ImageProcess;
 import com.datn.searchByImage.ImageResult;
@@ -52,12 +59,22 @@ public class ProductDAO {
 															+ "WHERE cart.iduser = ?;\r\n";
 		private static final String UPDATE_CART = "UPDATE cart SET quantity = ? WHERE iduser = ? AND idproduct = ?";
 		private static final String DELETE_CART = "DELETE FROM cart WHERE iduser = ? AND idproduct = ?";
+		private static final String ORDER = "INSERT INTO orders (id, iduser, listidproduct, createtime, status, address, phone, totalmoney) values (?,?,?,?,?,?,?,?)";
+		private static final String UPDATE_PRODUCT = "UPDATE product_inventory SET sold = sold + ?, inventory = total - sold WHERE idproduct = ?";
+		private static final String SELECT_ORDER = "select * from orders where iduser = ?";
 		private static final String UPDATE_STAR = "UPDATE product\r\n"
 												+ "SET star = ROUND(\r\n"
 												+ "    (SELECT AVG(star) FROM rate WHERE rate.idproduct = ?),\r\n"
 												+ "    1\r\n"
 												+ ")\r\n"
 												+ "WHERE product.id = ?;";
+		public static final String SELECT_BEST_SELLING_PRODUCT = "SELECT product.name , product.price , product.image \r\n"
+									+ "FROM product \r\n"
+									+ "JOIN product_inventory ON product.id = product_inventory.idproduct\r\n"
+									+ "ORDER BY product_inventory.sold DESC";
+		private static final String SELECT_INFOR_ORDER = "SELECT listidproduct, totalmoney FROM orders WHERE id = ?";
+		private static final String SELECT_ORDER_ITEM = "select product.name, product.image, product.price from product where product.id = ?";
+				
 		public ProductDAO() {
 			
 		}
@@ -401,6 +418,128 @@ public class ProductDAO {
 				e.printStackTrace();
 			}
 			return "error";
+		}
+		
+		
+		public String Order(Order o) {
+			try(Connection connection = getConnection()) {
+				PreparedStatement ps = connection.prepareStatement(ORDER);
+				int result = 0;
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+				DateTimeFormatter formatterId = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+				String formattedDateTime = currentDateTime.format(formatter);
+				String formattedDateTimeId = currentDateTime.format(formatterId);
+				ps.setString(1, formattedDateTimeId+"_"+String.valueOf(o.getIduser()));
+				ps.setInt(2,  o.getIduser());
+				ps.setString(3, o.getIdproduct());
+				ps.setString(4, formattedDateTime);
+				ps.setString(5,  "Đang chuẩn bị");
+				ps.setString(6, o.getAddress());
+				ps.setString(7, o.getPhone());
+				ps.setInt(8, o.getTotalmoney());
+				result = ps.executeUpdate();
+				UpdateQuantity(o.getIdproduct());
+				if (result > 0) {
+                    return "OK";
+                } 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
+		}
+		
+		private void UpdateQuantity (String listProduct) {
+			try(Connection connection = getConnection()) {
+				 String[] pairs = listProduct.split(";");
+		            for (String pair : pairs) {
+		                String[] values = pair.split("-");
+		                int idProduct = Integer.parseInt(values[0]);
+		                int quantity = Integer.parseInt(values[1]);
+		                
+		                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
+						preparedStatement.setInt(1, quantity);
+						preparedStatement.setInt(2, idProduct);
+						preparedStatement.executeUpdate();
+		            }
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public List<OrderList> selectOrders (int iduser) {
+			List<OrderList> orderList = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+		                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ORDER);
+		                preparedStatement.setInt(1, iduser);
+		                ResultSet result = preparedStatement.executeQuery();
+		                while(result.next()) {
+		                	String id = result.getString("id");
+		                	String date = result.getString("createtime");
+		                	String status = result.getString("status");
+		                	int total = result.getInt("totalmoney");
+		                	OrderList o = new OrderList(id, date, status, total);
+		                	orderList.add(o);
+		            }
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return orderList;
+		}
+		
+		public List<BestSelling> selectBestSellingProduct () {
+			List<BestSelling> bestList = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BEST_SELLING_PRODUCT);
+				ResultSet result = preparedStatement.executeQuery();
+                while(result.next()) {
+                	String name = result.getString("name");
+                	String image = result.getString("image");
+                	int price = result.getInt("price");
+                	BestSelling o = new BestSelling(name, image, price);
+                	bestList.add(o);
+            }
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return bestList;
+		}
+		
+		public OrderResponse selectOrder (String id) {
+			OrderResponse orderResponse = null;
+			List<OrderItem> o = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+		                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_INFOR_ORDER);
+		                preparedStatement.setString(1, id);
+		                ResultSet result = preparedStatement.executeQuery();
+		                if(result.next()) {
+		                	String listProduct = result.getString("listidproduct");
+		                	int total = result.getInt("totalmoney");
+		                	String[] pairs = listProduct.split(";");
+				            for (String pair : pairs) {
+				                String[] values = pair.split("-");
+				                int idProduct = Integer.parseInt(values[0]);
+				                int quantity = Integer.parseInt(values[1]);
+				                
+				                PreparedStatement ps = connection.prepareStatement(SELECT_ORDER_ITEM);
+				                ps.setInt(1, idProduct);
+				                ResultSet result2 = ps.executeQuery();
+				                if(result2.next()) {
+				                	String name = result2.getString("name");
+				                	String image = result2.getString("image");
+				                	int price = result2.getInt("price");
+				                	OrderItem orderItem = new OrderItem(name, image, price, quantity);
+				                	o.add(orderItem);
+				                }
+				            }
+				            return new OrderResponse(id,total,o);
+		                }
+		            
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		
 		}
 		
 		
