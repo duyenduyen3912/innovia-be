@@ -1,48 +1,27 @@
 package com.datn.product;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.commons.codec.binary.Base64;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.Base64Utils;
-import org.springframework.util.StreamUtils;
-import org.springframework.util.StringUtils;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.util.Base64Utils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import com.datn.model.BestSelling;
 import com.datn.model.Cart;
@@ -51,32 +30,31 @@ import com.datn.model.OrderList;
 import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
-import com.datn.response.BestSellingProductResponse;
-import com.datn.response.CartResponse;
-import com.datn.response.DataResponse;
+import com.datn.security.*;
+import com.datn.response.ApiObjectResponse;
+import com.datn.response.ApiResponse;
 import com.datn.response.ListProduct;
-import com.datn.response.OrderListResponse;
 import com.datn.response.OrderResponse;
 import com.datn.response.Response;
 import com.datn.response.ReviewResponse;
 import com.datn.response.SearchImageResponse;
-import com.datn.response.StringResponse;
+
+import io.jsonwebtoken.Claims;
+
 import com.datn.response.DivideData;
 
-
-import org.apache.commons.io.IOUtils;
-
-//@Controller
 @RestController
 @CrossOrigin
 
 public class ProductController {
 	
 	private ProductDAO productDAO = new ProductDAO();
+	private Jwt jwt = new Jwt();
 	private static final int PAGE_SIZE = 9;
 	DivideData div = new DivideData(); 
-	 
-	    @GetMapping("/products")
+	
+	
+	@GetMapping("/products")
     public Object getProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
     	try {
             List<Product> allProducts = productDAO.selectAllProducts();
@@ -90,28 +68,27 @@ public class ProductController {
     }
     
     @GetMapping("/DProduct")
-	public DataResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
+	public ApiResponse getproduct(@RequestParam(name = "id", required = false)int id) throws IOException{
     	Product product = productDAO.selectProduct(id);
 
         if (product != null) {
             List<Product> productList = new ArrayList<>();
             productList.add(product);
-            DataResponse res = new DataResponse("success", productList);
-            return res;
+            return new ApiResponse("success", "Lấy thông tin sản phẩm thành công", productList);
+           
         } else {
-            return new DataResponse("error", null);
+        	return new ApiResponse("falied", "Lấy thông tin sản phẩm không thành công", null);
         }
 	}
 	
     @GetMapping("/Category")
-	public StringResponse getCategory() throws IOException{
+	public ApiResponse getCategory() throws IOException{
     	List<String> category = new ArrayList<>();
     	category = productDAO.selectCategory();
-    	StringResponse res = null;
     	if(category.size() != 0) {
-    		res = new StringResponse("success", category);
-    	} else res = new StringResponse("success", category);
-    	return res;
+    		return new ApiResponse("success", "Lấy thông tin thành công", category);
+    	} else return new ApiResponse("falied", "Lấy thông tin không thành công", null);
+   
 	}
     
     @GetMapping("/GetProductByCategory")
@@ -207,44 +184,80 @@ public class ProductController {
 	
 	@PostMapping("/addToCart")
 	@ResponseBody
-	public Map<String, String> addToCart( @RequestBody Cart c) throws IOException{
-		String result = productDAO.AddProductToCart(c);
+	public Map<String, String> addToCart( @RequestBody Cart c, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
+		
 		Map<String, String> response = new HashMap<>();
-		if(result.equals("error")) {
-	        response.put("status", "failed");
-	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
-	        
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(String.valueOf(c.getIduser()))) {
+				String result = productDAO.AddProductToCart(c);
+				if(result.equals("error")) {
+			        response.put("status", "failed");
+			        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+			        
+				} else {
+					response.put("status", "success");
+			        response.put("data", "Thêm sản phẩm thành công");
+			     
+				}
+			} else {
+				response.put("status", "failed");
+		        response.put("data", "Lỗi xác minh thông tin");
+			}
 		} else {
-			response.put("status", "success");
-	        response.put("data", "Thêm sản phẩm thành công");
-	     
+			response.put("status", "ExpiredToken");
+	        response.put("description", "Hết phiên đăng nhập");
 		}
+		
 		return response;
 	}
 	
 	@PostMapping("/selectCart")
 	@ResponseBody
-	public CartResponse selectCart( @RequestBody int id) throws IOException{
-		CartResponse c = null;
-		List<PCart> res = productDAO.selectProductInCart(id);
-		if(res.size() != 0) {
-			return c = new CartResponse("success", res);
-		} else return c = new CartResponse("failed", res);
+	public ApiResponse selectCart( @RequestBody String id, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
+		Map<String, String> response = new HashMap<>();
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(id)) {
+				int iduser = Integer.parseInt(id);
+				List<PCart> res = productDAO.selectProductInCart(iduser);
+				if(res.size() != 0) {
+					return new ApiResponse("success", "Lấy dữ liệu thành công", res);
+				} else return new ApiResponse("failed", "Lấy dữ liệu không thành công", res);
+			} else {
+		        return new ApiResponse("failed", "Lỗi xác minh thông tin", null);
+			}
+		} else {
+	        return new ApiResponse("ExpiredToken", "Hết phiên đăng nhập", null);
+		}
 				
 	}
 	
 	@PostMapping("/updateCart")
 	@ResponseBody
-	public Map<String, String> updateCart( @RequestBody Cart c) throws IOException{
+	public Map<String, String> updateCart( @RequestBody Cart c, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
 		Map<String, String> response = new HashMap<>();
-		String res = productDAO.UpdateCart(c);
-		if(res.equals("error")) {
-			response.put("status", "failed");
-	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
-	        return response;
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(String.valueOf(c.getIduser()))) {
+				String res = productDAO.UpdateCart(c);
+				if(res.equals("error")) {
+					response.put("status", "failed");
+			        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+			        return response;
+				} else {
+					response.put("status", "success");
+			        response.put("data", "Cập nhật thành công");
+			        return response;
+				}
+			} else {
+				response.put("status", "failed");
+		        response.put("data", "Lỗi xác minh thông tin");
+		        return response;
+			}
 		} else {
-			response.put("status", "success");
-	        response.put("data", "Cập nhật thành công");
+			response.put("status", "ExpiredToken");
+	        response.put("data", "Hết hạn phiên đăng nhập");
 	        return response;
 		}
 				
@@ -252,16 +265,29 @@ public class ProductController {
 	
 	@PostMapping("/deleteCart")
 	@ResponseBody
-	public Map<String, String> deleteCart( @RequestBody Cart c) throws IOException{
+	public Map<String, String> deleteCart( @RequestBody Cart c, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
 		Map<String, String> response = new HashMap<>();
-		String res = productDAO.DeleteCart(c);
-		if(res.equals("error")) {
-			response.put("status", "failed");
-	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
-	        return response;
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(String.valueOf(c.getIduser()))) {
+				String res = productDAO.DeleteCart(c);
+				if(res.equals("error")) {
+					response.put("status", "failed");
+			        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+			        return response;
+				} else {
+					response.put("status", "success");
+			        response.put("data", "Cập nhật thành công");
+			        return response;
+				}
+			} else {
+				response.put("status", "failed");
+		        response.put("data", "Lỗi xác minh thông tin");
+		        return response;
+			}
 		} else {
-			response.put("status", "success");
-	        response.put("data", "Cập nhật thành công");
+			response.put("status", "ExpiredToken");
+	        response.put("data", "Hết hạn phiên đăng nhập");
 	        return response;
 		}
 				
@@ -269,47 +295,77 @@ public class ProductController {
 	
 	@PostMapping("/order")
 	@ResponseBody
-	public Map<String, String> order( @RequestBody Order o) throws IOException{
-		String result = productDAO.Order(o);
+	public Map<String, String> order( @RequestBody Order o, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
 		Map<String, String> response = new HashMap<>();
-		if(result.equals("error")) {
-	        response.put("status", "failed");
-	        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
-	        
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(String.valueOf(o.getIduser()))) {
+				String result = productDAO.Order(o);
+				if(result.equals("error")) {
+			        response.put("status", "failed");
+			        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+			        return response;
+			        
+				} else {
+					response.put("status", "success");
+			        response.put("data", "Đặt hàng thành công");
+			        return response;
+				}
+			} else {
+				response.put("status", "failed");
+		        response.put("data", "Lỗi xác minh thông tin");
+		        return response;
+			}
 		} else {
-			response.put("status", "success");
-	        response.put("data", "Đặt hàng thành công");
-	     
-		}
-		return response;
+			response.put("status", "ExpiredToken");
+	        response.put("data", "Hết hạn phiên đăng nhập");
+	        return response;
+		}	
 	}
 	
 	@PostMapping("/selectOrderList")
 	@ResponseBody
-	public OrderListResponse orderList( @RequestBody int iduser) throws IOException{
-		List<OrderList> result = productDAO.selectOrders(iduser);
-		if(result.size() != 0) {
-			return new OrderListResponse("success", result);
-		} else {
-			return new OrderListResponse("failed", result);
-		}
+	public ApiResponse orderList( @RequestBody String iduser,  @RequestHeader("Authorization") String authorizationHeader) throws IOException{
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(iduser)) {
+				int id = Integer.parseInt(iduser);
+				List<OrderList> result = productDAO.selectOrders(id);
+				if(result.size() != 0) {
+					return new ApiResponse("success", "Lấy danh sách thành công", result);
+				} else {
+					return new ApiResponse("failed", "Có lỗi xảy ra, vui lòng thử lại sau", result);
+				}
+			} else {
+				return new ApiResponse("failed", "Lỗi xác minh thông tin", null);
+			}
+		} else return new ApiResponse("ExpiredToken", "Hết phiên đăng nhập", null);
 	}
 	
 	@GetMapping("/selectBestSellingProduct")
-	public BestSellingProductResponse bestSelling( ) throws IOException{
+	public ApiResponse bestSelling() throws IOException{
 		List<BestSelling> result = productDAO.selectBestSellingProduct();
 		if(result.size() != 0) {
-			return new BestSellingProductResponse("success", result);
+			return new ApiResponse("success", "Lấy danh sách thành công", result);
 		} else {
-			return new BestSellingProductResponse("failed", result);
+			return new ApiResponse("failed", "Lấy thông tin không thành công", null);
 		}
 	}
 	
 	@PostMapping("/selectOrderItem")
 	@ResponseBody
-	public OrderResponse selectOrderItem (@RequestBody String id) throws IOException {
-		OrderResponse result = productDAO.selectOrder(id);
-		return result;
+	public ApiObjectResponse selectOrderItem (@RequestBody String id, @RequestHeader("Authorization") String authorizationHeader) throws IOException {
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(id)) {
+				OrderResponse result = productDAO.selectOrder(id);
+				return new ApiObjectResponse("success", "Lấy thông tin thành công", result);
+			} else {
+				return new ApiObjectResponse("failed", "Lấy thông không tin thành công", null);
+			}
+		} else {
+			return new ApiObjectResponse("ExpiredToken", "Hết phiên đăng nhập", null);
+		}
 	}
 
 

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.datn.response.ResponseLogin;
+import com.datn.security.Jwt;
 import com.datn.user.*;
 
 
@@ -41,7 +42,7 @@ import org.apache.commons.io.IOUtils;
 public class UserController {
 	
 	private UserDAO userDAO = new UserDAO();
-
+	private Jwt jwt = new Jwt();
 	 
 	 @RequestMapping(value = "/signup", method = RequestMethod.POST,
              produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,7 +54,8 @@ public class UserController {
 			if(mess.equals("error")) {
 				result = new ResponseLogin("failed", "jwt", "Username đã tồn tại", u);
 			} else {
-				result = new ResponseLogin("success", "jwt", "Đăng ký thành công", u);
+				String token = jwt.generateJwtToken(String.valueOf(u.getId()));
+				result = new ResponseLogin("success", token, "Đăng ký thành công", u);
 			}
 			return result;
 
@@ -65,9 +67,10 @@ public class UserController {
 		 ResponseLogin result = null;
 		 User res = userDAO.selectUser(l);
 		 if(res.getUsername() != null) {
-			 result = new ResponseLogin("success", "jwt", "Thông tin chính xác", res);
+			 String token = jwt.generateJwtToken(String.valueOf(res.getId()));
+			 result = new ResponseLogin("success", token, "Thông tin chính xác", res);
 		 } else {
-			 result = new ResponseLogin("failed", "jwt", "Thông tin đăng nhập không chính xác", res);
+			 result = new ResponseLogin("failed", null, "Thông tin đăng nhập không chính xác", res);
 		 }
 		 
 		 return result;
