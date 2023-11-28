@@ -18,6 +18,7 @@ import java.util.Set;
 
 import com.datn.model.BestSelling;
 import com.datn.model.Cart;
+import com.datn.model.Id;
 import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
@@ -68,13 +69,14 @@ public class ProductDAO {
 												+ "    1\r\n"
 												+ ")\r\n"
 												+ "WHERE product.id = ?;";
-		public static final String SELECT_BEST_SELLING_PRODUCT = "SELECT product.name , product.price , product.image \r\n"
+		public static final String SELECT_BEST_SELLING_PRODUCT = "SELECT product.id, product.name , product.price , product.image \r\n"
 									+ "FROM product \r\n"
 									+ "JOIN product_inventory ON product.id = product_inventory.idproduct\r\n"
-									+ "ORDER BY product_inventory.sold DESC";
+									+ "ORDER BY product_inventory.sold DESC LIMIT 5";
 		private static final String SELECT_INFOR_ORDER = "SELECT listidproduct, totalmoney FROM orders WHERE id = ?";
 		private static final String SELECT_ORDER_ITEM = "select product.name, product.image, product.price from product where product.id = ?";
-				
+		private static final String CANCEL_ORDER = "DELETE FROM orders WHERE iduser = ? AND id = ?";		
+		
 		public ProductDAO() {
 			
 		}
@@ -493,10 +495,11 @@ public class ProductDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BEST_SELLING_PRODUCT);
 				ResultSet result = preparedStatement.executeQuery();
                 while(result.next()) {
+                	int id = result.getInt("id");
                 	String name = result.getString("name");
                 	String image = result.getString("image");
                 	int price = result.getInt("price");
-                	BestSelling o = new BestSelling(name, image, price);
+                	BestSelling o = new BestSelling(name, image, price, id);
                 	bestList.add(o);
             }
 			}catch(Exception e) {
@@ -542,7 +545,20 @@ public class ProductDAO {
 		
 		}
 		
-		
+		public String CancelOrder (Id i)  {
+			try (Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(CANCEL_ORDER);
+				preparedStatement.setInt(1, Integer.parseInt(i.getAuth()));
+				preparedStatement.setString(2, i.getId());
+				int rowsUpdated = preparedStatement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    return "OK";
+                } 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
+		}
 		
 		
 }

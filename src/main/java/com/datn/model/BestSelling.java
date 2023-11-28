@@ -2,17 +2,28 @@ package com.datn.model;
 
 public class BestSelling {
 	private String name, image;
-	private int price;
+	private int price, id;
 	public BestSelling() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BestSelling(String name, String image, int price) {
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public BestSelling(String name, String image, int price, int id) {
 		super();
 		this.name = name;
 		this.image = image;
 		this.price = price;
+		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}

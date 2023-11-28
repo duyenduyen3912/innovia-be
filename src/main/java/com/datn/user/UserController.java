@@ -2,7 +2,9 @@ package com.datn.user;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +35,7 @@ import com.datn.response.ResponseLogin;
 import com.datn.security.Jwt;
 import com.datn.user.*;
 
+import io.jsonwebtoken.Claims;
 
 import org.apache.commons.io.IOUtils;
 
@@ -76,5 +80,45 @@ public class UserController {
 		 return result;
 	 }
 
+	 @PostMapping("/updateUser")
+	 @ResponseBody
+	 public Map<String, String> updateUser(@RequestBody UpdateUser u, @RequestHeader("Authorization") String authorizationHeader) throws IOException {
+		 Map<String, String> response = new HashMap<>();
+		 System.out.println(u.getFullname());
+		 System.out.println(u.getIduser());
+		 System.out.println(u.getPassword());
+		 System.out.println(u.getPhone());
+		 if(jwt.isValidJwt(authorizationHeader)) {
+				Claims claims = jwt.decodeJwtToken(authorizationHeader);
+				if(claims.getSubject().equals(u.getIduser())) {
+					String result = userDAO.updateUser(u);
+					if(result.equals("error")) {
+						response.put("status", "failed");
+						response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+					} else {
+						response.put("status", "success");
+						response.put("data", "Cập nhật thành công!");
+					}
+						
+				} else {
+					response.put("status", "failed");
+			        response.put("data", "Lỗi xác minh thông tin");
+				}
+			} else {
+				response.put("status", "ExpiredToken");
+		        response.put("data", "Hết hạn phiên đăng nhập");
+			}
+		 return response;
+	 }
+	 
+	 @GetMapping("/checkToken")
+	 public Map<String, String> checkToken (@RequestHeader("Authorization") String authorizationHeader) throws IOException {
+		 Map<String, String> response = new HashMap<>();
+		 if(jwt.isValidJwt(authorizationHeader)) {
+			 response.put("data", "true");
+		
+		 } else response.put("data", "false");
+		 return response;
+	 }
 	
 }

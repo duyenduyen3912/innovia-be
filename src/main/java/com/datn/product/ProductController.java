@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.datn.model.BestSelling;
 import com.datn.model.Cart;
+import com.datn.model.Id;
 import com.datn.model.Order;
 import com.datn.model.OrderList;
 import com.datn.model.PCart;
@@ -327,6 +328,7 @@ public class ProductController {
 	@ResponseBody
 	public ApiResponse orderList( @RequestBody String iduser,  @RequestHeader("Authorization") String authorizationHeader) throws IOException{
 		if(jwt.isValidJwt(authorizationHeader)) {
+	
 			Claims claims = jwt.decodeJwtToken(authorizationHeader);
 			if(claims.getSubject().equals(iduser)) {
 				int id = Integer.parseInt(iduser);
@@ -354,11 +356,11 @@ public class ProductController {
 	
 	@PostMapping("/selectOrderItem")
 	@ResponseBody
-	public ApiObjectResponse selectOrderItem (@RequestBody String id, @RequestHeader("Authorization") String authorizationHeader) throws IOException {
+	public ApiObjectResponse selectOrderItem (@RequestBody Id i, @RequestHeader("Authorization") String authorizationHeader) throws IOException {
 		if(jwt.isValidJwt(authorizationHeader)) {
 			Claims claims = jwt.decodeJwtToken(authorizationHeader);
-			if(claims.getSubject().equals(id)) {
-				OrderResponse result = productDAO.selectOrder(id);
+			if(claims.getSubject().equals(i.getAuth())) {
+				OrderResponse result = productDAO.selectOrder(i.getId());
 				return new ApiObjectResponse("success", "Lấy thông tin thành công", result);
 			} else {
 				return new ApiObjectResponse("failed", "Lấy thông không tin thành công", null);
@@ -368,6 +370,34 @@ public class ProductController {
 		}
 	}
 
-
+	@PostMapping("/cancelOrder")
+	@ResponseBody
+	public Map<String, String> cancelOrder( @RequestBody Id i, @RequestHeader("Authorization") String authorizationHeader) throws IOException{
+		Map<String, String> response = new HashMap<>();
+		if(jwt.isValidJwt(authorizationHeader)) {
+			Claims claims = jwt.decodeJwtToken(authorizationHeader);
+			if(claims.getSubject().equals(i.getAuth())) {
+				String res = productDAO.CancelOrder(i);
+				if(res.equals("error")) {
+					response.put("status", "failed");
+			        response.put("data", "Có lỗi xảy ra, vui lòng thử lại sau");
+			        return response;
+				} else {
+					response.put("status", "success");
+			        response.put("data", "Cập nhật thành công");
+			        return response;
+				}
+			} else {
+				response.put("status", "failed");
+		        response.put("data", "Lỗi xác minh thông tin");
+		        return response;
+			}
+		} else {
+			response.put("status", "ExpiredToken");
+	        response.put("data", "Hết hạn phiên đăng nhập");
+	        return response;
+		}
+				
+	}
 	
 }

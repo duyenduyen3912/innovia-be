@@ -22,7 +22,7 @@ public class UserDAO {
 		
 		private static final String SELECT_USER_BY_USERNAME ="select * from users where username= ?";
 		public static final String ADD_NEW_USER = "insert into users (username, password, fullname, email, phone) values (?,?,?,?,?) ";
-		
+		private static final String UPDATE_USER = "UPDATE users SET password = ?, fullname = ?  , phone = ? WHERE id = ?;";
 		public UserDAO() {
 			
 		}
@@ -39,12 +39,7 @@ public class UserDAO {
 			}
 			return connection;
 		}
-		
-		
-		
-		
-	
-		
+
 		public User selectUser(Login l) {
 			User u = new User();
 			try(Connection connection = getConnection()) {
@@ -97,6 +92,24 @@ public class UserDAO {
 			}
 			return "OK";
 		
+		}
+		
+		public String updateUser (UpdateUser u) {
+			try(Connection connection = getConnection()) {
+				PreparedStatement ps = connection.prepareStatement(UPDATE_USER);
+				ps.setString(1, u.getPassword());
+				ps.setString(2, u.getFullname());
+				ps.setString(3, u.getPhone());
+				ps.setInt(4, Integer.parseInt(u.getIduser()));
+				int result = 0; 
+				result = ps.executeUpdate();
+				if(result > 0) {
+					return "OK";
+				}
+			}  catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "error";
 		}
 		
 		
