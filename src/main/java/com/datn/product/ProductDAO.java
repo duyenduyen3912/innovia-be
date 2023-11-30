@@ -44,9 +44,10 @@ public class ProductDAO {
 		private String jdbcPassword = "tothichmeou39";
 		
 		private static final String SELECT_ALL_Product = "select * from product ORDER BY star DESC";
-		private static final String SELECT_ALL_Product_CATEGORY = "select * from product where category=?";
+		private static final String SELECT_ALL_Product_CATEGORY = "select * from product where category_name=?";
+		private static final String SELECT_ALL_Product_CATEGORY_RCM = "select * from product where category=?";
 		private static final String SELECT_Product_BY_ID ="select * from product where id= ?";
-		private static final String SELECT_CATEGORY = "select distinct category from product";
+		private static final String SELECT_CATEGORY = "select distinct category_name from product";
 		private static final String SEARCH_Product_BY_NAME ="select * from product where name like ?";
 		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
 		private static final String ADD_REVIEW = "insert into rate (idproduct, star, comment) values (?,?,?);";
@@ -112,7 +113,9 @@ public class ProductDAO {
 					String size = resultSet.getString("size");
 					String image = resultSet.getString("image");
 					float star = resultSet.getFloat("star");
-					Product b = new Product(name,description, category, tag, long_description, weight, size, image, idProduct, price, star);
+					String category_name = resultSet.getString("category_name");
+					String model = resultSet.getString("model");
+					Product b = new Product(name,description, category, tag, long_description, weight, size, image, idProduct, price, star, category_name, model);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -143,6 +146,8 @@ public class ProductDAO {
 					aProduct.setPrice(result.getInt("price"));
 					aProduct.setImage(result.getString("image"));
 					aProduct.setStar(result.getFloat("star"));
+					aProduct.setCategory_name(result.getString("category_name"));
+					aProduct.setModel(result.getString("model"));
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -157,7 +162,7 @@ public class ProductDAO {
 				ResultSet resultSet = preparedStatement.executeQuery();
 				while(resultSet.next())
 				{
-					String c = resultSet.getString("category");
+					String c = resultSet.getString("category_name");
 					category.add(c);
 				}
 			} catch(Exception e) {
@@ -186,7 +191,41 @@ public class ProductDAO {
 					String image = resultSet.getString("image");
 					int price = resultSet.getInt("price");
 					float star = resultSet.getFloat("star");
-					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
+					String category_name = resultSet.getString("category_name");
+					String model = resultSet.getString("model");
+					Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
+					Products.add(b);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return Products;
+		}
+		
+		public List<Product> selectAllProductByCategoryRcm (String label) {
+			
+			List<Product> Products = new ArrayList<>();
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_Product_CATEGORY_RCM);
+				preparedStatement.setString(1,label);
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next())
+				{
+					int id = resultSet.getInt("id");
+					String name = resultSet.getString("name");
+					String description = resultSet.getString("description");
+					String category = resultSet.getString("category");
+					String tag = resultSet.getString("tag");
+					String long_description = resultSet.getString("long_description");
+					String weight = resultSet.getString("weight");
+					String size = resultSet.getString("size");
+					String image = resultSet.getString("image");
+					int price = resultSet.getInt("price");
+					float star = resultSet.getFloat("star");
+					String category_name = resultSet.getString("category_name");
+					String model = resultSet.getString("model");
+					Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -216,7 +255,9 @@ public class ProductDAO {
 					String image = resultSet.getString("image");
 					int price = resultSet.getInt("price");
 					float star = resultSet.getFloat("star");
-					Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
+					String category_name = resultSet.getString("category_name");
+					String model = resultSet.getString("model");
+					Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
 					Products.add(b);
 				}
 			} catch(Exception e) {
@@ -251,7 +292,7 @@ public class ProductDAO {
 				if(imageNeighbors.size() != 0) {
 					image_result = res.Result(imageNeighbors);
 					products = getProductByImage(image_result);
-					recommend = selectAllProductByCategory(imageLabel);
+					recommend = selectAllProductByCategoryRcm(imageLabel);
 				}
 				else return result_list = new ListProduct(Collections.emptyList(), Collections.emptyList());
 				imageProcess.deleteImageFile(data);
@@ -286,7 +327,9 @@ public class ProductDAO {
 							String image = resultSet.getString("image");
 							int price = resultSet.getInt("price");
 							float star = resultSet.getFloat("star");
-							Product b = new Product(name,description,category,tag,long_description,weight,size,image,id,price, star);
+							String category_name = resultSet.getString("category_name");
+							String model = resultSet.getString("model");
+							Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
 							Products.add(b);
 							addedIds.add(id);
 						} 

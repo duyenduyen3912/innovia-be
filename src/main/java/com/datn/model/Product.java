@@ -1,7 +1,7 @@
 package com.datn.model;
 
 public class Product {
-	private String name, description, category, tag, long_description, weight, size, image;
+	private String name, description, category, tag, long_description, weight, size, image, category_name, model;
 	private int id, price;
 	private float star;
 	
@@ -13,7 +13,7 @@ public class Product {
 
 
 	public Product(String name, String description, String category, String tag, String long_description, String weight,
-			String size, String image, int id, int price, float star) {
+			String size, String image, int id, int price, float star, String category_name, String model) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -23,6 +23,8 @@ public class Product {
 		this.weight = weight;
 		this.size = size;
 		this.image = image;
+		this.category_name = category_name;
+		this.model = model;
 		this.id = id;
 		this.price = price;
 		this.star = star;
@@ -139,6 +141,26 @@ public class Product {
 	}
 
 
+	public String getCategory_name() {
+		return category_name;
+	}
+
+
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
+
+
+	public String getModel() {
+		return model;
+	}
+
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	
 	
 	
 }

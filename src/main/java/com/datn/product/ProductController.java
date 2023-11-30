@@ -175,12 +175,14 @@ public class ProductController {
 	) {
 		ReviewResponse response = null;
 		List<Review> r = productDAO.getReviewOfProduct(idproduct);
+		Map<String, String>  res = new HashMap<>();
 		if(r.size() != 0) {
-			response = div.DivideReviews(r, 5, currentPage, "success");
+			return response = div.DivideReviews(r, 5, currentPage, "success");
 		} else {
-			response = div.DivideReviews(r, 5, currentPage, "faild");
+			res.put("status", "failed");
+			return res;
 		}
-		return response;
+	
 	}
 	
 	@PostMapping("/addToCart")
