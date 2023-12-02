@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ import com.datn.model.OrderList;
 import com.datn.model.PCart;
 import com.datn.model.Product;
 import com.datn.model.Review;
+import com.datn.rcmsys.SearchService;
 import com.datn.security.*;
 import com.datn.response.ApiObjectResponse;
 import com.datn.response.ApiResponse;
@@ -53,7 +55,8 @@ public class ProductController {
 	private Jwt jwt = new Jwt();
 	private static final int PAGE_SIZE = 9;
 	DivideData div = new DivideData(); 
-	
+	@Autowired
+    private SearchService searchService;
 	
 	@GetMapping("/products")
     public Object getProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
@@ -123,8 +126,10 @@ public class ProductController {
 				allProducts = result_product.getProduct();
 			}
 			else {
-				String keyword = data.substring(1, data.length() - 1);
-				allProducts = productDAO.selectAllProductByName(keyword);
+				System.out.println(data);
+				List<String> rcm = searchService.suggestProducts("products", data);
+				System.out.println(rcm);
+				allProducts = productDAO.selectAllProductByName(rcm);
 				isSearchByName = true;
 			}
 			if(allProducts.size() != 0) {

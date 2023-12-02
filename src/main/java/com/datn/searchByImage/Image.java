@@ -49,26 +49,26 @@ public class Image {
 		 String label = null;
 		 int attributeIndex = predict_label.attribute("class").index();
 		 predict_label.instance(0).setMissing(attributeIndex);
-		 System.out.println(predict_label);
+		
 		 try {
 	     File modelFile = new File("data\\knn_model.model");
-	     if(modelFile.exists()) {
-	    
-	    	 knn = (IBk) SerializationHelper.read("data\\knn_model.model");
-	    	 label = predictImage.predictImage(predict_label, knn);
-	     } else {
+//	     if(modelFile.exists()) {
+//	    
+//	    	 knn = (IBk) SerializationHelper.read("data\\knn_model.model");
+//	    	 label = predictImage.predictImage(predict_label, knn);
+//	     } else {
 	    	 Instances filteredData = extractColorHistogram("C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\dataset.arff");
 			 Instances processData = iProcess.removeAttribute(filteredData, "image");
 			 Instances train = km.divideTrainTest(processData, 20, false);
 		     Instances test = km.divideTrainTest(processData, 20, true);
-		     Knn model = new Knn(train, "-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"",
+		     Knn model = new Knn(train, "-K 2 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"",
 		                null);
 		     model.buildKNN(train);
 		     model.evaluateKNN(test);
 		     label = model.predictImage(predict_label);
 	
 
-	     }
+//	     }
 		 
 	     
 		 } catch (Exception e) {

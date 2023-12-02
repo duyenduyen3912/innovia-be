@@ -236,30 +236,34 @@ public class ProductDAO {
 		}
 	
 		
-		public List<Product> selectAllProductByName(String search){
+		public List<Product> selectAllProductByName(List<String> search){
+			
 			List<Product> Products = new ArrayList<>();
 			try(Connection connection = getConnection()) {
 				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_NAME);
-				preparedStatement.setString(1,'%' +search+ '%');
-				ResultSet resultSet = preparedStatement.executeQuery();
-				while(resultSet.next())
-				{
-					int id = resultSet.getInt("id");
-					String name = resultSet.getString("name");
-					String description = resultSet.getString("description");
-					String category = resultSet.getString("category");
-					String tag = resultSet.getString("tag");
-					String long_description = resultSet.getString("long_description");
-					String weight = resultSet.getString("weight");
-					String size = resultSet.getString("size");
-					String image = resultSet.getString("image");
-					int price = resultSet.getInt("price");
-					float star = resultSet.getFloat("star");
-					String category_name = resultSet.getString("category_name");
-					String model = resultSet.getString("model");
-					Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
-					Products.add(b);
+				for(String query: search) {
+					preparedStatement.setString(1,'%' +query+ '%');
+					ResultSet resultSet = preparedStatement.executeQuery();
+					while(resultSet.next())
+					{
+						int id = resultSet.getInt("id");
+						String name = resultSet.getString("name");
+						String description = resultSet.getString("description");
+						String category = resultSet.getString("category");
+						String tag = resultSet.getString("tag");
+						String long_description = resultSet.getString("long_description");
+						String weight = resultSet.getString("weight");
+						String size = resultSet.getString("size");
+						String image = resultSet.getString("image");
+						int price = resultSet.getInt("price");
+						float star = resultSet.getFloat("star");
+						String category_name = resultSet.getString("category_name");
+						String model = resultSet.getString("model");
+						Product b = new Product(name,description, category, tag, long_description, weight, size, image, id, price, star, category_name, model);
+						Products.add(b);
+					}
 				}
+				
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

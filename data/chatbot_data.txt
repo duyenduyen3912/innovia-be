@@ -1,0 +1,308 @@
+Q: Có sản phẩm mới nào không
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Shop có sản phẩm mới nào không
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có sản phẩm mới nào không shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng về thêm chưa
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Shop về hàng thêm chưa
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng về thêm chưa shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới không
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới không shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới về không
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới về không shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng về chưa
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng về chưa shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng mới về chưa
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Hàng mới về chưa shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới chưa
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Có hàng mới chưa shop
+A: Chúng tôi vừa cập nhật sản phẩm mới với giá ưu đãi, hãy ghé qua mục sản phẩm của chúng tôi nhé!
+Q: Giá sản phẩm có đắt không
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá sản phẩm có đắt không shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Mức giá sản phẩm thế nào
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Mức giá sản phẩm thế nào shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Mức giá sản phẩm thế nào vậy
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá cả thế nào
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá cả thế nào shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá hàng thế nào vậy
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá có đắt không
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá có đắt không shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá thế nào
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá thế nào shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Giá thế nào vậy
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Xin giá sản phẩm đi shop
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Xin giá sản phẩm 
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Xin giá 
+A: Sản phẩm của chúng tôi được thiết kế từ các kiến trúc sư dày dặn kinh nghiệm và sản xuất từ chất liệu tốt nhất. Giá sản phẩm sẽ dao động từ 100.000VNĐ đến 10.000.000VNĐ cho các loại kệ, giường và tủ. Khoảng từ 50.000.000VNĐ đến 200.000.000VNĐ đối với các loại sofa cao cấp!
+Q: Sản phẩm có sẵn không
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Sản phẩm có sẵn không shop
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Hàng có sẵn không
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Hàng có sẵn không shop
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Hàng có sẵn không vậy
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Shop có hàng sẵn không vậy
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Hàng sẵn không ạ
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Hàng sẵn không shop
+A: Sản phẩm của chúng tôi là hàng thiết kế nên thời gian đặt trước sẽ tốn khoảng 10 ngày để chuẩn bị sản phẩm. Ngoài ra các sản phẩm giá trị dưới 10.000.000VNĐ có sẵn tại cửa hàng, săn sàng phục vụ quý khách!
+Q: Nếu không thích màu sắc sản phẩm tôi có được đổi không
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Nếu không thích màu sắc sản phẩm tôi có được đổi hàng không shop
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Không ưng có được đổi trả không
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Không ưng có được đổi trả không shop
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Không ưng có được đổi trả không ạ
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Hàng về không thích có được đổi trả không
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Hàng về không thích có được đổi trả không shop
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Hàng về không thích có được đổi trả không ạ
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Có được trả hàng nếu không thích không shop
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Có được trả hàng nếu không thích không 
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Có được trả hàng nếu không thích không ạ
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Trong trường hợp không ưng có được trả lại hàng không
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Trong trường hợp không ưng có được trả lại hàng không shop
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Trong trường hợp không ưng có được trả lại hàng không ạ
+A: Tất cả hình ảnh sản phẩm trong cửa hàng chúng tôi đều được chụp trực tiếp từ sản phẩm thật. Quý khách vui lòng cho phép sai màu từ 3-5%, ngoài ra chúng tôi xin cam kết hàng giống hình. Nếu quý khách không thích màu sắc của sản phẩm chúng tôi xin phép không đổi trả, mong quý khách thông cảm!
+Q: Các phương thức thanh toán nào được chấp nhận
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Shop chấp nhận phương thức thanh toán nào
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Shop chấp nhận phương thức thanh toán vậy
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Shop chấp nhận phương thức thanh toán thế
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Làm thế nào để thanh toán 
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Làm thế nào để thanh toán vậy
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Làm thế nào để thanh toán ạ
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Làm thế nào để thanh toán shop
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Trả tiền hàng thế nào
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Trả tiền hàng thế nào vậy
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Trả tiền hàng thế nào vậy shop
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Thanh toán thế nào ạ
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Thanh toán thế nào vậy
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Tôi thanh toán thế nào
+A: Đến thời điểm hiện tại, chúng tôi chỉ nhận thanh toán bằng phương thức COD (thanh toán khi nhận hàng) để nâng cao trải nghiệm mua hang. Quý khách có thể kiểm tra sản phẩm rồi mới tiến hành thanh toán!
+Q: Cửa hàng có nhận thiết kế riêng không
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Shop có nhận thiết kế riêng không
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Shop có nhận thiết kế riêng không ạ
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Shop có nhận thiết kế riêng không thế
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Có nhận đặt riêng không shop
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Có nhận đặt riêng không
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Có nhận đặt riêng không ạ
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Tôi muốn đặt thiết kế
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Tôi muốn đặt thiết kế riêng
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Tôi muốn đặt thiết kế riêng không shop
+A: Hiện tại chúng tôi xin phép không nhận thiết kế riêng do một vài ký do bất khả kháng. Nhưng chúng tôi cung cấp cho quý khách 1 thư viện thiết kế miễn phí để quý khách tham khảo cho ngôi nhà của mình. Mong quý khách thông cảm!
+Q: Có chương trình giảm giá nào không
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Shop có chương trình giảm giá nào không
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có chương trình giảm giá nào không shop
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có chương trình giảm giá nào không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Shop có chương trình giảm giá nào không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có chương trình khuyến mãi nào không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Shop có chương trình khuyến mãi nào không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có chương trình khuyến mãi nào không shop
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có giảm giá không shop
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có giảm giá không 
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có giảm giá không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Shop có giảm giá không ạ
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có khuyến mãi gì không
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Shop có khuyến mãi gì không
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có khuyến mãi gì không shop
+A: Xin lỗi quý khách, hiện tại chúng tôi chưa có dự định tạo các chương trình giảm giá!
+Q: Có thể đổi màu sản phẩm không?
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Tôi muốn đổi màu sản phẩm
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Tôi muốn đổi màu sản phẩm được không
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Shop có cho đổi màu sản phẩm không
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Có được đổi màu sản phẩm không
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Shop có được đổi màu sản phẩm không
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Có được đổi màu sản phẩm không ạ
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Mình muốn đổi màu sản phẩm
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Làm thế nào để đổi màu theo sở thích
+A: Quý khách có thể đổi màu sản phẩm theo ý thích. Quý khách lưu ý sử dụng tính năng thử trước của cửa hàng tại trang chi tiết sản phẩm để xem sự phù hợp của màu sắc với căn nhà của mình. Ngoài ra, quý khách muốn đổi màu sản phẩm nhớ để lại ghi chú cho chúng tôi để tạo ra sản phẩm vừa ý quý khách nhất nhé!
+Q: Xin chào
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Chào shop
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Chào ad
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Chào
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Shop ơi
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Cho mình hỏi
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Mình muốn hỏi
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Chào bạn
+A: Chào bạn, tôi là trợ lý innovia, rất vui được giúp đỡ bạn. Hãy chọn một mục mà bạn quan tâm hoặc hỏi vấn đề bạn thắc mắc nhé!
+Q: Cảm ơn
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn bạn
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn innovia
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn shop
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn shop nhiều
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn shop nhé
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn shop ạ
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn ạ
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn nhiều
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Cảm ơn bạn nhé
+A: Không có gì, tôi là trợ lý innovia, rất vui vì có thể giúp đỡ bạn! Chúc bạn có trải nghiệm mua sắm vui vẻ tại cửa hàng của chúng tôi.
+Q: Gợi ý vài sản phẩm được đánh giá tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Có thể gợi ý vài sản phẩm tốt không
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Shop gợi ý sản phẩm
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Shop giúp mình gợi ý vài sản phẩm đánh giá tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Gợi ý sản phẩm đi shop
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Shop có sản phẩm nào tốt không
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Shop có gợi ý sản phẩm đánh giá tốt không
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Tìm cho tôi sản phẩm đánh giá tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Tìm cho tôi sản phẩm tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Tìm cho tôi sản phẩm đánh giá tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Tôi cần sản phẩm đánh giá tốt
+A: Vâng tất nhiên rồi, bạn có thể ghé qua mục sản phẩm và chọn sắp xếp theo đánh giá để xem những sản phẩm được khách hàng đánh giá tốt của chúng tôi!
+Q: Thời gian ship hàng có lâu không?
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Ship hàng khoảng bao lâu
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Ship hàng khoảng bao lâu ạ
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Ship hàng khoảng bao lâu thế
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Shop ship hàng khoảng bao lâu
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Ship hàng khoảng bao lâu
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Ship hàng khoảng mấy ngày
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Thời gian ship hàng thế nào vậy
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Thời gian shop ship hàng mấy ngày
+A: Thời gian đặt trước cho sản phẩm của chúng tôi là 10 ngày. Thời gian vận chuyển đôi với khu vực nội thành Hà Nội là 3 ngày, các khu vực khác thời gian dao động từ 4-7 ngày tuỳ địa điểm.
+Q: Làm thế nào để đặt hàng?
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Đặt hàng thế nào
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Hướng dẫn đặt hàng
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Tôi muốn đặt hàng
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Đặt hàng thế nào shop ơi
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Mình muốn đặt hàng
+A: Chào bạn, để đặt hàng online từ cửa hàng của chúng tôi, bạn có thể làm theo hướng dẫn sau: Bước 1: Chọn sản phẩm bạn ưa thích. Bước 2: Điền số lượng bạn muốn mua và ấn thêm vào giỏ hàng. Bước 3: Vào giỏ hàng chọn sản phẩm bạn muốn đặt và ấn nút thanh toán. Bước 4: Chọn địa chỉ của bạn và ấn đặt hàng. Xin lưu ý, các đơn hàng được đặt online là thanh toán sau khi bạn đã nhận được hàng, chúc bạn mua sắm vui vẻ!
+Q: Chính sách đổi trả của cửa hàng.
+A: Chào bạn, chúng tôi hoạt động với tiêu chí đem lại sự tiện lợi cho khách hàng, vì vậy, các đơn hàng có bất kỳ lỗi do nhà sản xuất sẽ được bồi thường theo mức độ hư hại hoặc bạn có thể trả lại hàng trong vòng 7 ngày kể từ ngày nhận hàng. Với các lỗi từ đơn vị vận chuyển, chúng tôi sẽ giúp bạn khiếu nại. Ngoài các lí do trên, chúng tôi sẽ không tiến hàng bảo hành/ đổi trả với các lí do khác. Chúc bạn có trải nghiệm mua sắm vui vẻ!
+Q: Shop đổi hàng thế nào.
+A: Chào bạn, chúng tôi hoạt động với tiêu chí đem lại sự tiện lợi cho khách hàng, vì vậy, các đơn hàng có bất kỳ lỗi do nhà sản xuất sẽ được bồi thường theo mức độ hư hại hoặc bạn có thể trả lại hàng trong vòng 7 ngày kể từ ngày nhận hàng. Với các lỗi từ đơn vị vận chuyển, chúng tôi sẽ giúp bạn khiếu nại. Ngoài các lí do trên, chúng tôi sẽ không tiến hàng bảo hành/ đổi trả với các lí do khác. Chúc bạn có trải nghiệm mua sắm vui vẻ!
+Q: Đổi hàng trong trường hợp nào
+A: Chào bạn, chúng tôi hoạt động với tiêu chí đem lại sự tiện lợi cho khách hàng, vì vậy, các đơn hàng có bất kỳ lỗi do nhà sản xuất sẽ được bồi thường theo mức độ hư hại hoặc bạn có thể trả lại hàng trong vòng 7 ngày kể từ ngày nhận hàng. Với các lỗi từ đơn vị vận chuyển, chúng tôi sẽ giúp bạn khiếu nại. Ngoài các lí do trên, chúng tôi sẽ không tiến hàng bảo hành/ đổi trả với các lí do khác. Chúc bạn có trải nghiệm mua sắm vui vẻ!
+Q: Muốn đổi hàng thì phải làm sao
+A: Chào bạn, chúng tôi hoạt động với tiêu chí đem lại sự tiện lợi cho khách hàng, vì vậy, các đơn hàng có bất kỳ lỗi do nhà sản xuất sẽ được bồi thường theo mức độ hư hại hoặc bạn có thể trả lại hàng trong vòng 7 ngày kể từ ngày nhận hàng. Với các lỗi từ đơn vị vận chuyển, chúng tôi sẽ giúp bạn khiếu nại. Ngoài các lí do trên, chúng tôi sẽ không tiến hàng bảo hành/ đổi trả với các lí do khác. Chúc bạn có trải nghiệm mua sắm vui vẻ!
+Q: Các sản phẩm chính của cửa hàng là gì ?
+A: Chào bạn, chúng tôi là những nhà thiết kế nội thất và phụ kiện trang trí. Với kinh nghiệm và trình độ của các kỹ sư, chúng tôi cung cấp cho bạn những thiết kế độc đáo về các sản phẩm như: Bàn ghế, Sofa, Bàn, Ghế, Giường, Tủ, Kệ, Cây cảnh,...
+Q: Sản phẩm của cửa hàng là gì
+A: Chào bạn, chúng tôi là những nhà thiết kế nội thất và phụ kiện trang trí. Với kinh nghiệm và trình độ của các kỹ sư, chúng tôi cung cấp cho bạn những thiết kế độc đáo về các sản phẩm như: Bàn ghế, Sofa, Bàn, Ghế, Giường, Tủ, Kệ, Cây cảnh,...
+Q: Shop bán những gì
+A: Chào bạn, chúng tôi là những nhà thiết kế nội thất và phụ kiện trang trí. Với kinh nghiệm và trình độ của các kỹ sư, chúng tôi cung cấp cho bạn những thiết kế độc đáo về các sản phẩm như: Bàn ghế, Sofa, Bàn, Ghế, Giường, Tủ, Kệ, Cây cảnh,...
+Q: Cách vận chuyển của cửa hàng như thế nào ?
+A: Chào bạn, thời gian chúng tôi xử lý đơn hàng và đóng gói sản phẩm là 2 ngày. Với các đơn hàng nội thành Thành phố Hà Nội, thời gian vận chuyển sẽ khoảng 2 ngày. Còn lại các khu vực khác sẽ dao động từ 4 -7 ngày tuỳ địa điểm!
