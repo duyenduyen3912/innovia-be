@@ -28,13 +28,11 @@ public class Image {
     public Instances SearchImage (Instances predict)  {
     	Instances res = null;
     	try {
-    	
     	Instances filteredData = extractColorHistogram("C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\image.arff");
         Instances processData = iProcess.removeAttribute(filteredData, "image");
         Instances newData = iProcess.removeAttribute(processData, "class" );
         FindImage find = new FindImage();
         res = find.findNeighborsInRadius(predict, 0.5, newData);
-      
       
     	} catch (Exception e) {
 	        e.printStackTrace();
@@ -52,23 +50,23 @@ public class Image {
 		
 		 try {
 	     File modelFile = new File("data\\knn_model.model");
-//	     if(modelFile.exists()) {
-//	    
-//	    	 knn = (IBk) SerializationHelper.read("data\\knn_model.model");
-//	    	 label = predictImage.predictImage(predict_label, knn);
-//	     } else {
-	    	 Instances filteredData = extractColorHistogram("C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\dataset.arff");
-			 Instances processData = iProcess.removeAttribute(filteredData, "image");
+	     if(modelFile.exists()) {
+	    
+	    	 knn = (IBk) SerializationHelper.read("data\\knn_model.model");
+	    	 label = predictImage.predictImage(predict_label, knn);
+	     } else {
+	    	 DataSource source = new DataSource("C:\\Users\\ngocl\\eclipse-workspace\\datn-be\\data\\data_extract.arff");
+	         Instances processData = source.getDataSet();
 			 Instances train = km.divideTrainTest(processData, 20, false);
 		     Instances test = km.divideTrainTest(processData, 20, true);
-		     Knn model = new Knn(train, "-K 2 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"",
+		     Knn model = new Knn(train, "-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"",
 		                null);
 		     model.buildKNN(train);
 		     model.evaluateKNN(test);
 		     label = model.predictImage(predict_label);
 	
 
-//	     }
+	     }
 		 
 	     
 		 } catch (Exception e) {

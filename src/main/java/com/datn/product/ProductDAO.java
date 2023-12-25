@@ -39,8 +39,8 @@ import weka.core.Instances;
 
 public class ProductDAO {
 		private DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
-		private String jdbcURL = "jdbc:mysql://localhost:3306/datn";
-		private String jdbcUsername = "root";
+		private String jdbcURL = "jdbc:mysql://192.168.1.24:3306/datn";
+		private String jdbcUsername = "duyenduyen";
 		private String jdbcPassword = "tothichmeou39";
 		
 		private static final String SELECT_ALL_Product = "select * from product ORDER BY star DESC";
@@ -50,7 +50,7 @@ public class ProductDAO {
 		private static final String SELECT_CATEGORY = "select distinct category_name from product";
 		private static final String SEARCH_Product_BY_NAME ="select * from product where name like ?";
 		private static final String SEARCH_Product_BY_IMAGE ="select * from product where image like ?";
-		private static final String ADD_REVIEW = "insert into rate (idproduct, star, comment) values (?,?,?);";
+		private static final String ADD_REVIEW = "insert into rate (idproduct, star, comment, iduser) values (?,?,?,?);";
 		private static final String SELECT_REVIEW = "SELECT * FROM rate WHERE idproduct = ?";
 		private static final String ADD_PRODUCT_TO_CART = "INSERT INTO cart (iduser, idproduct, quantity, note)\r\n"
 															+ "VALUES (?, ?, ?, ?)\r\n"
@@ -77,6 +77,9 @@ public class ProductDAO {
 		private static final String SELECT_INFOR_ORDER = "SELECT listidproduct, totalmoney FROM orders WHERE id = ?";
 		private static final String SELECT_ORDER_ITEM = "select product.name, product.image, product.price from product where product.id = ?";
 		private static final String CANCEL_ORDER = "DELETE FROM orders WHERE iduser = ? AND id = ?";		
+		private static final String CHECK_ORDER = "SELECT * FROM orders WHERE iduser = ? AND listidproduct LIKE ?;";
+		private static final String CHECK_REVIEW = "SELECT * FROM datn.rate WHERE iduser = ? AND idproduct = ?;";
+			
 		
 		public ProductDAO() {
 			
@@ -237,7 +240,7 @@ public class ProductDAO {
 	
 		
 		public List<Product> selectAllProductByName(List<String> search){
-			
+			System.out.println("name");
 			List<Product> Products = new ArrayList<>();
 			try(Connection connection = getConnection()) {
 				PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_Product_BY_NAME);
@@ -290,15 +293,17 @@ public class ProductDAO {
 				Instances extract_label = imageProcess.extractColorHistogram(predict_label);
 				
 				Instances imageNeighbors = resInstance.SearchImage(extract);
-				
+
 				imageLabel = resInstance.predictLabel(extract_label);
 				
-				if(imageNeighbors.size() != 0) {
+				if (imageNeighbors.numInstances() > 0) {
 					image_result = res.Result(imageNeighbors);
 					products = getProductByImage(image_result);
 					recommend = selectAllProductByCategoryRcm(imageLabel);
+				} else {
+					recommend = selectAllProductByCategoryRcm(imageLabel);
+					return result_list = new ListProduct(Collections.emptyList(), recommend);
 				}
-				else return result_list = new ListProduct(Collections.emptyList(), Collections.emptyList());
 				imageProcess.deleteImageFile(data);
 			} catch (IOException e) {
 	            e.printStackTrace();
@@ -356,6 +361,7 @@ public class ProductDAO {
 				ps.setInt(1, r.getIdproduct());
 				ps.setInt(2, r.getStar());
 				ps.setString(3, r.getComment());
+				ps.setInt(4, r.getIduser());
 				result = ps.executeUpdate();
 				UpdateStarProduct(r.getIdproduct());
 			} catch(Exception e) {
@@ -375,14 +381,41 @@ public class ProductDAO {
 					int id = result.getInt("idproduct");
 					int star = result.getInt("star");
 					String comment = result.getString("comment");
-					
-					Review list_review = new Review(idproduct, star, comment);
+					int iduser = result.getInt("iduser");
+					Review list_review = new Review(id, star, comment,iduser);
 					r.add(list_review);
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 			return r;
+		}
+		
+		public String checkReview (int idproduct, int iduser) {
+			try(Connection connection = getConnection()) {
+				PreparedStatement preparedStatement = connection.prepareStatement(CHECK_REVIEW);
+				preparedStatement.setInt(1,idproduct);
+				preparedStatement.setInt(2,iduser);
+				ResultSet result = preparedStatement.executeQuery();
+				if(result.next())
+				{
+					return "false";
+					
+				} else  {
+						PreparedStatement preparedStatement2 = connection.prepareStatement(CHECK_ORDER);
+						preparedStatement2.setInt(1,iduser);
+						preparedStatement2.setString(2, "%" + idproduct + "-%");
+						ResultSet result2 = preparedStatement2.executeQuery();
+						if(result2.next() != true)
+						{
+							return "false";
+							
+						} 
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return "true";
 		}
 		
 		private void UpdateStarProduct (int idproduct)  {

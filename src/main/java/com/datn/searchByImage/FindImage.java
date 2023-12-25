@@ -21,12 +21,14 @@ import weka.core.neighboursearch.NearestNeighbourSearch;
 	        for (int i = 0; i < neighborsInstances.size(); i++) {
 	            Instance neighborInstance = neighborsInstances.get(i);
 	            double distance = search.getDistances()[i];
-	      
-	            if (distance <= radius) {
-	           
+	            if(distance == 0) {
+	            	neighbors.add(neighborInstance);
+	            	return neighbors;
+	            } else if (distance <= radius) {
 	                neighbors.add(neighborInstance);
 	            }
 	        }
+	        
 	   
 	        return neighbors;
 	    }

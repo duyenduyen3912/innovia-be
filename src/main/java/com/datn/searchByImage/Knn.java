@@ -21,6 +21,8 @@ public class Knn extends KnowledgeModel {
         this.trainSet.setClassIndex(this.trainSet.numAttributes() - 1);
         this.knn = new IBk();
         knn.setOptions(model_options);
+       
+        
         knn.buildClassifier(this.trainSet);
         SerializationHelper.write("data\\knn_model.model", knn);
     }
@@ -30,8 +32,8 @@ public class Knn extends KnowledgeModel {
         this.testSet.setClassIndex(this.testSet.numAttributes()-1);
         Random rd = new Random(1);
         int folds = 10;
-        eval = new Evaluation(this.trainSet);
-        eval.crossValidateModel(knn, this.testSet, folds, rd);
+        eval = new Evaluation(test);
+        eval.crossValidateModel(knn, test, folds, rd);
         System.out.println(eval.toSummaryString("\n -----Kết quả đánh giá mô hình nhận diện loại hình ảnh-----\n", false));
     }
 
@@ -43,7 +45,7 @@ public class Knn extends KnowledgeModel {
         double predict_label = knn.classifyInstance(predict.instance(0));
         predict.instance(0).setClassValue(predict_label);
     	
-    	
+    	System.out.println(predict.instance(0).stringValue(predict.classIndex()));
     	return predict.instance(0).stringValue(predict.classIndex());
     }
     

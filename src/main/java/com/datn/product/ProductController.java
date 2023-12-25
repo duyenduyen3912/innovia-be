@@ -114,7 +114,6 @@ public class ProductController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Object searchByImage(@RequestBody String data, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) throws IOException {
-		
 		ListProduct result_product = null;
 		List<Product> allProducts = new ArrayList<>();
 		Response response = null;
@@ -170,6 +169,11 @@ public class ProductController {
 	@ResponseBody
 	public String addReview(@RequestBody Review r) throws IOException {
 		String result = productDAO.insertReview(r);
+		return result;
+	}
+	@GetMapping("/checkReview")
+	public String checkReview(@RequestParam int idproduct, int iduser) throws IOException {
+		String result = productDAO.checkReview(idproduct,iduser);
 		return result;
 	}
 	

@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import com.datn.model.Chat;
 
 public class ChatDAO {
-	private String jdbcURL = "jdbc:mysql://localhost:3306/datn";
-	private String jdbcUsername = "root";
+	private String jdbcURL = "jdbc:mysql://192.168.1.24:3306/datn";
+	private String jdbcUsername = "duyenduyen";
 	private String jdbcPassword = "tothichmeou39";
 	
 	private static final String GET_ANSWER_BY_OPTIONS = "SELECT answer, action, image FROM chat where option_id = ?";

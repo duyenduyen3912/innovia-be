@@ -54,13 +54,13 @@ public class ImageProcess {
     	 Attribute image = new Attribute("image", (ArrayList<String>) null);
 	     List<String> classValues = new ArrayList<>();
 	     classValues.add("Sofa");
-	     classValues.add("Ban");
-	     classValues.add("Ghe");
+//	     classValues.add("Ban");
+//	     classValues.add("Ghe");
 	     classValues.add("BanGhe");
 	     classValues.add("Giuong");
 	     classValues.add("Ke");
-	     classValues.add("Cay");
-	     classValues.add("Tu");
+//	     classValues.add("Cay");
+//	     classValues.add("Tu");
 	     Attribute classDT = new Attribute("class", classValues);
 
        ArrayList<Attribute> attributes = new ArrayList<>();

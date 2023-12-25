@@ -15,8 +15,8 @@ import java.util.List;
 
 public class UserDAO {
 		private DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
-		private String jdbcURL = "jdbc:mysql://localhost:3306/datn";
-		private String jdbcUsername = "root";
+		private String jdbcURL = "jdbc:mysql://192.168.1.24:3306/datn";
+		private String jdbcUsername = "duyenduyen";
 		private String jdbcPassword = "tothichmeou39";
 		
 		
